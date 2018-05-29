@@ -2,7 +2,7 @@
 Cloud Edge Computing: Beyond the Data Center
 ============================================
 
-INTRODUCTION
+Introduction
 ============
 
 For over a decade, centralized cloud computing has been considered a standard IT
@@ -63,7 +63,7 @@ encourage the entire open source community to join in both the effort and the
 opportunity of creating or adapting tools to meet the new requirements of cloud
 edge computing.
 
-WHAT IS CLOUD EDGE COMPUTING?
+What is Cloud Edge Computing?
 =============================
 
 It is worth highlighting that many overlapping and sometimes conflicting definitions
@@ -116,7 +116,7 @@ Edge computing capabilities include, but are not limited to:
   (AR/VR, voice, and so forth).
 * Geofencing and requirements for keeping sensitive private data local.
 
-A DEEPER EXPLORATION OF EDGE COMPUTING CONSIDERATIONS
+A Deeper Exploration of Edge Computing Considerations
 -----------------------------------------------------
 
 The “edge” in edge computing refers to the outskirts of an administrative domain,
@@ -188,7 +188,7 @@ computing are:
 * The likelihood of difficult-to-resolve resource constraints at sites across
   the network.
 
-EXPLORING CHARACTERISTICS
+Exploring Characteristics
 =========================
 
 So what do we know so far about edge computing characteristics, use cases,
@@ -240,7 +240,7 @@ requirements include:
    environments won’t be ideal—limited power, dirt, humidity and vibration have
    to be considered.
 
-USE CASES
+Use Cases
 ---------
 
 There are probably dozens of ways to characterize use cases and this paper is
@@ -366,7 +366,7 @@ any applications could leverage any or all of the capabilities provided
 by a cloud—compute, block storage, object storage, virtual networking, bare metal,
 or containers.
 
-SCENARIOS
+Scenarios
 ---------
 
 The basic characteristic of the edge computing paradigm is that the infrastructure
@@ -447,7 +447,7 @@ use case, as well as highlighting weaknesses and opportunities for improvement.
    .. image:: figures/4-satellite-enabled-communication.png
       :width: 100%
 
-CHALLENGES
+Challenges
 ----------
 
 Though there are plenty of examples of edge deployments already in progress
@@ -532,7 +532,7 @@ challenging. These include, but are not limited to:
   network, means that fluctuations in local demand can be met without
   inefficiency in hardware deployments.
 
-CONCLUSION AND CALL TO ACTION
+Conclusion and Call to Action
 =============================
 
 Edge computing is not and should not be limited to just the components and
