@@ -21,8 +21,6 @@ To build English version of the document::
 
 To build translated version of the document::
 
-   $ sphinx-build -W -b gettext doc/source doc/source/locale
    (Set your language code like de, ko_KR and so on)
    $ LANG=ja
-   $ ./adjust.sh $LANG
-   $ sphinx-build -a -W -b html -D language=$LANG doc/source doc/build/html/$LANG
+   $ ./build.sh $LANG
