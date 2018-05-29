@@ -1,0 +1,365 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>边缘计算：跨越传统数据中心 &#8212; edge-computing  文档</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cloud-edge-computing-beyond-the-data-center">
+<h1>边缘计算：跨越传统数据中心<a class="headerlink" href="#cloud-edge-computing-beyond-the-data-center" title="永久链接至标题">¶</a></h1>
+<div class="section" id="introduction">
+<h2>介绍<a class="headerlink" href="#introduction" title="永久链接至标题">¶</a></h2>
+<p>近十几年来，中心化的云计算模型已经成为了一种标准的IT服务平台。虽然云计算现在已是普遍应用，但是随着新兴的计算模式和需求，现有的云计算模型也开始暴露出它的不足。一直以来，大家都习惯于将资源集中存放于中心化的数据中心，每个数据中心里面的计算和存储资源也相对的集中和富足，因此，大家也没有考虑过是否需要针对虚拟机管理软件和平台硬件的具体情况进行优化。普遍上，云平台的开发者也没有针对在资源受限的情况下去满足应用需求，例如节点硬件资源有限、节点间的网络不可靠和带宽受限；他们也没有考虑过如何满足那些对高带宽、低延时或者多站点大规模分布式应用程序的需求。</p>
+<p>新型应用、服务和计算任务的兴起需要一套全新的架构进行支撑，这种新的架构应该是能够直接支持分布式的基础设施。新的应用需求对远端站点在可用性和云平台能力上带来新的挑战，不但需要能够满足现有需求，如零售数据分析、网络服务；还需要很好地支持未来的创新，如智慧城市、增强现实和虚拟现实等。现有已经成熟、稳定、灵活和简易的云计算模型，必须能在多站点间和多网络的模式下继续扩展以应付不断演变的需求。</p>
+<p>近年来，不少公司已经开始将云计算的简易管理和灵活等特性应用于多站点、多网络的分布式架构。不少组织也开始希望云计算的能力能够跨越广域网，去覆盖那些不断增长的、在边缘网络、小集群的部署。尽管这种想法还是比较早期，但是它一定会随着那些受益于分布式架构的用户场景的出现而逐步变得清晰。</p>
+<p>本篇白皮书，我们将会深入探索这种新理念。这种新技术也被惯称为分布式云、雾计算或者第四代数据中心等；但是在本篇白皮书中，我们将使用更为通用和易于理解的术语——边缘计算。</p>
+<p>尽管我们意识到当前OpenStack对于边缘计算的支持还是属于早期阶段，但是边缘计算工作组还是非常关注云计算的演化趋势。基于社区在OpenStack波士顿峰会上的最早提议，我们在2017年9月举行了一个2天的研讨会，有超过200名用户和开发者参与这次研讨会中，并开始了初期的艰辛工作，如定义相关用户场景、讨论相关工具和架构等。我们已经完成了初步的概念性验证，同时社区也已经存在了一些早期的部署案例。边缘计算工作组现已开始考虑如何定义一个功能完整的边缘计算云基础设施，这是非常具有挑战性的。</p>
+<p>本文，我们的目标是完成以下几项重要任务：</p>
+<ol class="arabic simple">
+<li>围绕边缘计算展开一系列话题，包括基本概念的定义、激发开源社区的兴趣和参与。</li>
+<li>引导OpenStack社区以及其他开源社区参与相关的工具开发和标准制定，为后续更广泛的应用提供支持。</li>
+<li>探索当前的工具、标准和架构，如何改进并应用于分布式的云模型。</li>
+</ol>
+<p>要实现我们的目标还需要很多的工作，我们非常欢迎和鼓励所有开源社区的成员都积极参与其中，一起努力和创建新的工具以满足边缘计算的新需求。</p>
+</div>
+<div class="section" id="what-is-cloud-edge-computing">
+<h2>什么是边缘计算？<a class="headerlink" href="#what-is-cloud-edge-computing" title="永久链接至标题">¶</a></h2>
+<p>需要强调的是，目前对于边缘计算定义有许多的重复和矛盾—许多人对边缘计算有着不同的解释。然而，我们的目的是要阐述关于边缘计算最成熟的观点：我们认为边缘计算是为应用开发者和服务提供商在网络的边缘侧提供云服务和IT环境服务。</p>
+<p>边缘计算的目标是在靠近数据输入或用户的地方提供计算、存储和网络带宽。一个边缘计算的环境一般有以下特点：多个站点之间的潜在高延迟、网络不可靠和慢速带宽, 伴随着一般数据中心中心化资源池所不能应对的其他交付服务和应用功能。通过将部分或者全部处理程序迁移至靠近用户或数据收集点，边缘计算能够大大减少在大规模分布式站点下给应用程序所带来的影响。</p>
+<p>边缘计算与数据中心的应用差别，首先出现在基于广域网的虚拟网络服务上。最开始的应用场景是希望能够借助现有云计算用户所熟悉的架构，来建立一个即灵活又简单的管理平台</p>
+<p>随着新型的边缘计算能力的出现，我们可以看见计算模型的转变——不再束缚于建设中心化的数据中心。取而代之的是，对于某些应用来说，边缘计算吸取了虚拟化和云计算的经验，创造出一种能够管理成千上万大规模分布式节点的潜在能力，并且满足各种多样的用户场景，例如工业领域的万物互联或者是应用于成千上万水力资源网络的全方位实时监控。</p>
+<p>目前存在很多商业的和开源的边缘计算软件，它们其实并不依赖于分布式云架构——一些厂商把这类产品称作“边缘设备”。这种方案的组件主要包括IoT网管或者NFV设备。但是逐渐地，应用程序需要云在边缘节点能够提供更加丰富的功能，然而此时构建分布式边缘基础设施的工具和架构还处于早期。我们的看法是，市场对边缘计算的能力需求会持续不断地增长。</p>
+<p>边缘计算的能力包括并不限于下列：</p>
+<ul class="simple">
+<li>提供一个跨多种基础设施的一致性操作范式</li>
+<li>能够支持大规模分布式环境</li>
+<li>能够为全球分布的客户交付网络服务</li>
+<li>能够满足应用集成、编排和服务交付的需求</li>
+<li>能够满足硬件资源的限制和成本的限制</li>
+<li>能够运行在局限及不稳定的网络之上</li>
+<li>能够满足应用对超低延迟的需求，如增强现实、虚拟现实和语言识别等</li>
+<li>能够实现区域隔离，保护本地数据的隐私</li>
+</ul>
+<div class="section" id="a-deeper-exploration-of-edge-computing-considerations">
+<h3>深入探索边缘计算的考虑因素<a class="headerlink" href="#a-deeper-exploration-of-edge-computing-considerations" title="永久链接至标题">¶</a></h3>
+<p>边缘计算的边缘指的是位于管理域的边缘，尽可能地靠近数据源或用户。这个概念同样适用于运营商网络、有众多分支机构的大企业，如零售，或者是与IoT相关的其他应用。</p>
+<a class="reference internal image-reference" href="_images/1-edge-computing.png"><img alt="_images/1-edge-computing.png" src="_images/1-edge-computing.png" style="width: 100%;" /></a>
+<p>边缘计算的一个特点是应用与边缘的位置紧密相关。对于运营商来说，边缘指一个位置靠近用户但是却由供应商控制，潜在地在用户的设备上运行着不同种类的计算任务。对于大型企业来说，边缘指一个应用程序、服务和工作任务正在运行的位置（如，零售商店或者工厂）。对于这个定义而言，边缘不是指那些支持能够支持最小化云架构并资源有限的终端设备，如IoT或者传感设备。这是一个非常重要的考虑因素，因为很多针对边缘计算的讨论并不如此区分。</p>
+<p>边缘计算与数据中心在如下几个方面是相似的：</p>
+<ul class="simple">
+<li>都包含计算、存储和网络资源</li>
+<li>这些资源都可以被多个用户和应用程序共享</li>
+<li>都收益于虚拟化技术和资源池的抽象</li>
+<li>都收益于能够利用白牌硬件的能力</li>
+<li>都能够通过API来支持互操作性</li>
+</ul>
+<p>边缘计算与大规模数据中的区别在于：</p>
+<ul class="simple">
+<li>边缘节点尽可能地靠近最终用户，能够提高在高延时和不可靠连接下的用户体验。</li>
+<li>边缘计算也许需要特殊的硬件，如GPU/FPGA平台来提供增强现实和虚拟现实的功能。</li>
+<li>边缘计算能够扩展至非常多的站点，分布在各个不同的地点。</li>
+<li>一个边缘站点的位置和它的访问认证链接是非常重要的。一个需要靠近在用户端运行的应用程序，需要处于正确的边缘部分。对于边缘计算来讲，应用程序位置的重要性是通用的。</li>
+<li>多站点的所有资源池都应该是动态的。因为站点之间的物理隔离，边缘站点应该能够在某种程度上相互连接，并且能够通过广域网与核心相连。边缘站点会随时加入或离开整个基础设施资源池。</li>
+<li>边缘站点一般是处于远端并且潜在地无法被操纵，因此边缘站点必须能够被远程管理。相关工具必须能够支持通过不可靠网络来访问边缘站点。</li>
+<li>边缘计算应该支持巨大的差异性，如不同大小和规模的站点、大规模的数据中心或者是单个设备</li>
+<li>边缘站点往往是资源受限的；这是因为空间或电源的限制导致不能随意往站点里面添加资源</li>
+<li>一些用户场景需要能够在大规模的情况下实现多租户的功能</li>
+<li>边缘计算与云数据中心的隔离需要通过保证“外部云”不能影响边缘计算的相关服务</li>
+</ul>
+<p>边缘计算的概念必须包括边缘站点（如计算、网络和存储基础设施），和运行着的应用程序（计算任务）。边缘计算环境中的应用程序还是能够享有云计算中的各种资源，如计算、块存储、对象存储、虚拟网络、裸机或者容器。</p>
+<p>定义和区分边缘计算和云计算的最基本特征是：</p>
+<ul class="simple">
+<li>有能力支持由多个潜在宽泛分布的站点组成的动态资源池</li>
+<li>潜在不可靠的网络连接</li>
+<li>很可能在跨网络多站点的情况下碰到的难以解决的资源限制</li>
+</ul>
+</div>
+</div>
+<div class="section" id="exploring-characteristics">
+<h2>探索功能特性及案例<a class="headerlink" href="#exploring-characteristics" title="永久链接至标题">¶</a></h2>
+<p>所以迄今为止我们对于边缘计算的特性、用例及应用场景了解多少？</p>
+<p>驱动边缘计算的至关重要的动力就是为了能够更近一步的为用户或终端数据资源提供服务。边缘计算环境将与核心协作，目标在不向核心提出无理连接请求的前提下提供更佳的用户体验。将通过以下几点进行改进：</p>
+<ol class="arabic simple">
+<li>降低延时：即使是远距的计算功能，能够降低用户所感受到的时延，例如能够有效地实现响应式远程桌面，增强现实或是带来更好的游戏。</li>
+<li>降低带宽限制：这种将工作迁移至更接近于用户或是数据采集终端的能力，能够降低站点带宽限制所带来的影响。尤其是当边缘节点服务减少了向中枢发送大量数据处理的请求时，这一点显得及其有用。这种场景普遍适用于物联网及网络功能虚拟化负载。数据量的减少以及本地化处理能够帮助转化为具有更高响应的应用程序，并减少长距离兆兆传输所带来的支出。</li>
+</ol>
+<p>但这其中仍存在着利弊权衡。为了应用边缘计算，大幅增加部署数量是必要条件。这对大规模的边缘部署构成了一定的挑战。如果说管理单一云需要一个十人团队，那么一个组织又怎么能够处理上百甚至上千个小型云。部分要求包括：</p>
+<ol class="arabic simple">
+<li>需要标准化和统一的基础环境。每个区域具有类似架构；已知数量。</li>
+<li>提供自动化管理；在处理部署，更替及任何可复原性故障时提供简洁直接的处理方法。</li>
+<li>当硬件出现故障时，提供简洁高效的应对计划。</li>
+<li>本地式容错设计也不容忽视，尤其是面对远程或不可达的环境，零接触式的管理模式。这同时也是一个如何权衡购买和运行大量冗余硬件设备与针对服务中断和应急修复的问题。其中考量包括<ol class="loweralpha">
+<li>Do these locations need to be self-sufficient?</li>
+<li>If a location has a failure, no one is going to be onsite to fix it, and local
+spares are unlikely.</li>
+<li>Does it need to tolerate failures? And if it does, how long is it going to be
+before someone will be available to repair it—two hours, a week, a month?</li>
+</ol>
+</li>
+<li>维护操作必须简洁。未经过培训的工人能够进行人工修复和替换，而熟练的远程管理员可以进行重装或软件维护。</li>
+<li>物理设计可能需要整体反思。大多数的边缘计算环境并不理想，有限的能源，灰尘，湿度以及振动都应被考虑在内。</li>
+</ol>
+<div class="section" id="use-cases">
+<h3>案例<a class="headerlink" href="#use-cases" title="永久链接至标题">¶</a></h3>
+<p>用来表征案例的方法可能会有几十种，本文因长度限制而不能够详细罗列。这里提供了一些示例以帮助梳理思绪和点明应用的机遇。</p>
+<p>分析，合规，安全和网络功能虚拟化是受益于分布式架构的四类主要工作需求。</p>
+<div class="section" id="data-collection-and-analytics">
+<h4>数据采集及分析<a class="headerlink" href="#data-collection-and-analytics" title="永久链接至标题">¶</a></h4>
+<p>物联网的数据通常采集于大规模的微型站点，是受益于边缘计算模型的典型应用。如果大量的数据是通过有限的网络连接传输至位于集中式数据中心的分析引擎进行数据分析，这将会适得其反；分析引擎可能出现响应不足，也可能导致额外的延时并浪费宝贵的带宽。鉴于边缘计算设备同样能够产生兆兆级数据，将数据接近于源头进行分析，只向中枢系统发送小批量的汇总信息，如此靠近边缘侧数据源的分析方式显得更具有成本效益。当然，这其中也需要在向中枢传递数据所产生的成本和缺失部分信息之间进行权衡。</p>
+</div>
+<div class="section" id="security">
+<h4>安全<a class="headerlink" href="#security" title="永久链接至标题">¶</a></h4>
+<p>遗憾的是，随着边缘设备（包括手机及物联网传感器）的普及，终端设备的激增也使得新兴的攻击矢量不断涌现。边缘计算能够使得安全部件更接近于攻击源，启动更高效的安全应用并增加分层数量以抵御针对核心的侵犯和风险。</p>
+</div>
+<div class="section" id="compliance-requirements">
+<h4>合规要求<a class="headerlink" href="#compliance-requirements" title="永久链接至标题">¶</a></h4>
+<p>合规涵盖了广泛的需求，包括地理围栏，数据主权及版权执法。基于地理及政治边界约束数据使用，基于版权限制进行数据限流，将数据存储于包含特定规章的区域，这些操作在边缘计算基础环境中都是可实现和可执行的。</p>
+</div>
+<div class="section" id="network-function-virtualization-nfv">
+<h4>网络功能虚拟化<a class="headerlink" href="#network-function-virtualization-nfv" title="永久链接至标题">¶</a></h4>
+<p>网络功能虚拟化的核心是一个典型的边缘计算应用，因为边缘计算为其提供了基础功能。电信运营商正尝试将虚拟网络功能运行于边缘计算基础架构的一部分或上层架构，并以此来转换运营商的服务交付模式。在边缘计算基础环境中运行虚拟网络功能确实能够发挥出其最高的效能以及最低的支出/复杂度。</p>
+</div>
+<div class="section" id="real-time">
+<h4>实时性<a class="headerlink" href="#real-time" title="永久链接至标题">¶</a></h4>
+<p>实时应用，例如增强现实/虚拟现实，互联汽车，远程医疗，感知网络工业4.0以及智慧城市，无法容忍超过数毫秒的时延并对于抖动或时延变化极其敏感。 举例来说，互联汽车要求低时延、高带宽，并依靠接近于用户的计算和内容缓存，这些条件使边缘核心成为了必备项。在很多场景下，尤其是使用封闭式自动化操作来维护高可用性的场景，响应时间必须保证在几十毫秒内，这种条件除了边缘计算基础设施之外是无法达成的。</p>
+</div>
+<div class="section" id="immersive">
+<h4>拟真<a class="headerlink" href="#immersive" title="永久链接至标题">¶</a></h4>
+<p>边缘计算扩展了带宽性能，激发了新兴拟真应用的潜能。其中包括增强现实/虚拟现实、4K 视频和应用于各领域例如医疗中360°图像技术。鉴于TCP等协议对于无线电网络通信的骤变无法良好响应，边缘缓存以及内容优化已经成为了必不可少的技术。若将边缘计算基础环境应用于无线电/网络信息的实时交互，则能在视频浏览高峰期将卡顿、延迟等情况减少20%，并可以根据无线电情况实时更变视频影像的比特率。</p>
+</div>
+<div class="section" id="network-efficiency">
+<h4>网络效率<a class="headerlink" href="#network-efficiency" title="永久链接至标题">¶</a></h4>
+<p>许多应用对于延迟的不敏感，也不需要大量的就近计算或存储资源。所以理论上它们可以在集中式云端运行，但是对于带宽和/或计算的需要仍然使得边缘计算成为了一种更加高效的选择。当前部分应用已较为常见，其中包括视频监控和物联网网关，而另外一些则正在起步，包括面部识别和汽车登记号码牌识别。对于这些产业来说，边缘计算不仅仅为它们降低了带宽需求还为实现应用价值的功能提供了一个平台。视频监控动作感知和威胁识别就是一个很好的例子。在许多的这类应用中，90%的数据都是常规且不相关，因此将这些数据传输至集中式云端不仅价格高昂还浪费了往往本就匮乏的网络带宽。这使得这种在边缘侧分拣异常和有变化的数据，并只上报实用数据的处理方法显得更具意义。</p>
+</div>
+<div class="section" id="self-contained-and-autonomous-site-operations">
+<h4>自成一体和自动化操作<a class="headerlink" href="#self-contained-and-autonomous-site-operations" title="永久链接至标题">¶</a></h4>
+<p>直至今日，仍有许多场所的互联网连接受限，不可靠或不稳定。这些场所包括交通工具（飞机，汽车，轮船），采矿作业区（石油钻塔，输油管道，矿井），电力基础设施（风电场，太阳能电站）, 或是一些一般应具有良好网络连接的场所，例如仓库。边缘计算能够灵活的帮助这些场所，在当它们需要或网络连接不可用时保证半自动化操作并运作如常。即使在暂时无网络连接的情况下，仍为零售区域维护他们的POS系统就是这一实现的最佳案例。</p>
+</div>
+<div class="section" id="privacy">
+<h4>机密性<a class="headerlink" href="#privacy" title="永久链接至标题">¶</a></h4>
+<p>企业可能会因工作，网络连接局限性和机密性的需要选择边缘计算。举例来说，医疗应用程序在将个人健康信息传输至云端前必须将其匿名化，而这就需要应用到边缘计算。</p>
+<p>另外，我们也可以根据不同公司的部署类型来了解哪些需求会受益于边缘计算。操作员应用程序是由操作员来建立和管理安排至边缘计算处的工作，例如，电信运营商。第三方应用则是由其组织建立并运行在已有的边缘计算环境中，并以此来影响其它的边缘计算环境。值得一提的是，任何应用都能够影响部分或是所有云端所提供的特性，包括计算，块存储，对象存储，虚拟网络，裸机或容器。</p>
+</div>
+</div>
+<div class="section" id="scenarios">
+<h3>场景<a class="headerlink" href="#scenarios" title="永久链接至标题">¶</a></h3>
+<p>边缘计算模式的基础特性就是将基础设施更接近于底层用户，即站点分布范围广且边缘节点由WAN网络连接。场景中进一步的验证能够帮助我们评估已应用至案例中的现有功能，同时发现其劣势和可改进的方向。</p>
+<ol class="arabic">
+<li><p class="first">供零售/金融/远程连接领域使用的&quot;盒中云&quot;：提供了一系列可定制于特定企业或产业应用的边缘计算环境。这类边缘计算主要由企业使用，它从根本上与分布式结构相结合来达到以下效果：降低硬件消耗，多站标准化部署，灵活更替部署在边缘侧的应用（不受硬件影响，同一应用在所有节点上一致运行），提升韧性并关注间断WAN连接。当设定为有限网络连接时，内容缓存或提供计算、存储服务以及网络服务都是边缘计算常见的使用方法。</p>
+</li>
+<li><p class="first">移动连接：在5G网络大规模普及前，移动网络仍保持着受限和不稳定的特性，因此移动/无线网络也可以看作是云边缘计算的常见环境要素。许多应用或多或少都依赖于移动网络，例如应用于远程修复的增强现实、远程医疗、捕捉公共设施（水力，煤气，电力，设施管理）数据的物联网设备、库存、供应链以及运输解决方案、智慧城市、智慧道路和远程安全保障应用。这些应用都受益于边缘计算就近端处理的能力。</p>
+<a class="reference internal image-reference" href="_images/2-mobile-connectivity.png"><img alt="_images/2-mobile-connectivity.png" src="_images/2-mobile-connectivity.png" style="width: 100%;" /></a>
+</li>
+<li><p class="first">Network-as-a-Service （网络即服务）：由于需要在各异环境中提供特定的网络服务应用经验，NaaS用例不仅只能占用位于边缘上小部分的分布式平台，而且需要强大的，可跨接不稳定或受限WAN网络的集中式管理工具来支持外围边缘侧的服务。该场景的主要特征包括：硬件资源占用量小，移动（更改网络连接）及频繁更替工作，数据和应用混合安置。这也是基础平台需要支持微型节点（在非传统包（冷却数据中心内不都是19英寸机架）内进行少量计算）的案例之一。NaaS需要由上千或上万个边缘侧节点支持。同时，它还必须支持网状和/或层次式结构以及按需响应的站点（可能在需要时进行运转而在完成后关闭）。APIs和GUIs将会不断变化来映射安置于不同位置而非是同一数据中心内的大量计算节点。</p>
+<a class="reference internal image-reference" href="_images/3-network-as-a-service.png"><img alt="_images/3-network-as-a-service.png" src="_images/3-network-as-a-service.png" style="width: 100%;" /></a>
+</li>
+<li><p class="first">通用用户驻地设备（uCPE）:该场景现已部署完成，需要占用产品大小的硬件资源。其特点为：网络连接有限，工作量较为稳定但需确保可用性高。于此同时，它也需要一种方法来支持跨上百至上千节点的数据应用混合安置，而拓展现有uCPE部署也将成为一项新要求。</p>
+<p>而这点非常适用于NFV应用，尤其当不同站点可能需要不同系列的服务链应用，或是区域内一系列不同的应用需要统一协作时。由于本地资源的利用以及必须满足在间断的网络连接下进行存储和进行数据处理，我们可需要支持网状或层次式的结构。自我修复以及与远程节点管理相结合的自我管理都是必须条件。</p>
+</li>
+<li><p class="first">卫星通信（SATCOM）：该场景以大量可用的终端设备分布于最偏远和恶劣的环境为特征。同时，将这些分散的平台用于提供托管服务也是极为合理的，尤其是当考虑到极高的延时，有限的带宽以及跨卫星通讯的费用。具体事例可能包括船舶（从渔船到油轮），飞机，石油钻井，采矿作业或军事基础设施。</p>
+<a class="reference internal image-reference" href="_images/4-satellite-enabled-communication.png"><img alt="_images/4-satellite-enabled-communication.png" src="_images/4-satellite-enabled-communication.png" style="width: 100%;" /></a>
+</li>
+</ol>
+</div>
+<div class="section" id="challenges">
+<h3>挑战<a class="headerlink" href="#challenges" title="永久链接至标题">¶</a></h3>
+<p>虽然当前有非常多边缘计算的实例正在部署，但若要推广的话，还是需要解决新涌现出和早就存在的各种挑战与局限。</p>
+<p>我们已搭建起的边缘计算平台，比起传统的集中化数据中心云平台，从设计之初，不管是硬件的配置还是支持应用程序生命周期管理的系统服务，就加强了容错性和鲁棒性。我们还是不能假定这样的边缘计算实例能够满足标准数据中心基础设施在可维护性和支持设施上的要求。在这种场景下，所有的基础设施与平台系统栈需满足以下几项至关重要的需求：零干预系统预置，自动化，和自治的编排。</p>
+<p>但是还要考虑其他几个挑战。</p>
+<p>其一，针对一个可运维并依靠WAN互联达成的跨地域IaaS设施系统，边缘计算资源管理系统应当提供一组高层机制可以组合输出。换言之，这里的挑战是如何修订（而且如需要时进行扩展）IaaS层的核心服务，以处理如上所述边缘计算的特定需求 - 如网络断联/带宽，计算和存储设备有限的功能，缺乏管理的部署，等等。</p>
+<p>可预期的需求包括：</p>
+<ul class="simple">
+<li>一个统一管理虚拟机/容器/裸机生命周期的管理器（包括配置，调度，部署，休眠/唤醒，和关机）</li>
+<li>一个管理模版文件（即虚拟机和容器的镜像）的镜像管理器</li>
+<li>一个负责基础设施联通的网络管理器，包括虚拟网络和用户外部访问的管理</li>
+<li>一个存储管理器，可以给边缘应用提供存储服务</li>
+<li>可以运维和使用这些分散资源的管理员工具</li>
+</ul>
+<p>上述这些需求明显相关，而且很可能利用和适配现有的项目就可以了。但其他一些边缘计算的需求就更加有难度，包括并不限于以下所列：</p>
+<ul class="simple">
+<li>解决WAN网络中存储延迟问题</li>
+<li>加强边缘计算的安全 - 监控每个节点中硬件和应用的完整性，并能够必要时自主采取修正的操作</li>
+<li>同时检测所有节点中资源的使用情况</li>
+<li>能够管理和协调多边缘节点和负载的编排工具，有潜力发展为一个对等控制平面或&quot;自组织边缘计算&quot;</li>
+<li>必须探索多边缘计算平台（或多云之云）的联合编排技术，并引入到IaaS软件核心组件中<ul>
+<li>自动进行边缘计算调试/停用操作，包括初始软件部署和资源管理系统组件的升级。</li>
+<li>自动化数据和工作负载重定位 - 跨地域分布式硬件的负载平衡。</li>
+</ul>
+</li>
+<li>基础设施的&quot;核心&quot;应该需要抽象状态传播的某种形式的同步，以应对不连续的网络链路。</li>
+<li>需要新方法以解决由于连接受限导致的处理网络分区问题 - 应对短暂断开和长时间断开连接。</li>
+<li>边缘应用生命周期的管理工具，包括：<ul>
+<li>高级安置定位约束的定义，以便处理应用程序组件的延迟需求</li>
+<li>应用程序预置和调度应当满足安置的需求（初始安置）</li>
+<li>根据内部/外部事件（移动用例，故障，性能考虑等）迁移数据和工作负载</li>
+</ul>
+</li>
+<li>集成位置感知：并非所有的边缘计算部署都需要同一时间使用同一个程序。 可能需要支持位置和需求感知。</li>
+<li>在设计宏观层面的整体架构和管理工具时，需要考虑资源有限、远程扩展能力有限的离散硬件。 能够根据需要从其他站点（无论是Mesh网络上的邻居还是分层网络中的核心元素）获取远程资源的概念，指的是本地需求的波动不会导致硬件部署的低效。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="conclusion-and-call-to-action">
+<h2>总结与行动计划<a class="headerlink" href="#conclusion-and-call-to-action" title="永久链接至标题">¶</a></h2>
+<p>边缘计算不是也不应该仅限于OpenStack的组件和体系结构，但有很多理由证明，OpenStack作为边缘计算云端平台特别具有吸引力。Edge Computing Group工作组正在要求开源社区开始探索这些挑战和可能性。我们认识到，要实现我们创建这些工具以满足这些新需求的目标，还有很多工作要做。我们欢迎并鼓励整个开源社区参与这次定义与开发边缘计算的良机。您可以在OpenStack Edge Computing网站上找到有关该组活动的更多信息。</p>
+<p>请访问openstack.org网站了解OpenStack，或打开下面这些资源链接获取更多信息：</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Overview</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="https://www.openstack.org/edge-computing/">OSF Edge Computing web page</a></td>
+<td>边缘计算链接汇总，包括之前活动的视频、相关文章、以及进一步的内容。</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="http://lists.openstack.org/cgi-bin/mailman/listinfo/edge-computing">OSF Edge Computing mailing list</a></td>
+<td>讨论关于边缘和边缘计算的论坛（不限于OpenStack），也包含正在进行的活动和行动计划的信息。</td>
+</tr>
+<tr class="row-even"><td>OpenStack Summit</td>
+<td>为期四天的云计算技术峰会，面向IT领袖、云运营商和开发者。在此次峰会上新加入了边缘计算相关的议题分类。</td>
+</tr>
+<tr class="row-odd"><td>Internet Relay Chat (IRC; <a class="reference external" href="https://wiki.openstack.org/wiki/IRC">https://wiki.openstack.org/wiki/IRC</a>)</td>
+<td>FEMDC(Fog/Edge/Massively Distributed Clouds) SIG的IRC双周在线会议（奇数周），星期三1500 UTC，IRC频道是：#openstack-meeting</td>
+</tr>
+<tr class="row-even"><td>OSF events (<a class="reference external" href="https://www.openstack.org/community/events/">https://www.openstack.org/community/events/</a>)</td>
+<td>OpenStack峰会和区域OpenStack Day的全球时刻表。</td>
+</tr>
+<tr class="row-odd"><td>OpenStack Marketplace (<a class="reference external" href="https://www.openstack.org/marketplace/">https://www.openstack.org/marketplace/</a>)</td>
+<td>为生态圈提供有关产品、推广、培训、服务等信息的一站式资源汇总。</td>
+</tr>
+<tr class="row-even"><td>Complete OpenStack documentation (<a class="reference external" href="https://docs.openstack.org/">https://docs.openstack.org/</a>)</td>
+<td>关于计划和运营OpenStack云过程中每个角色与步骤的所有文档索引</td>
+</tr>
+<tr class="row-odd"><td>Welcome to the community! (<a class="reference external" href="https://www.openstack.org/community/">https://www.openstack.org/community/</a>)</td>
+<td>欢迎加入邮件列表和IRC频道，寻找工作机会和活动信息，访问源代码等。</td>
+</tr>
+<tr class="row-even"><td>User groups (<a class="reference external" href="https://groups.openstack.org/">https://groups.openstack.org/</a>)</td>
+<td>找到您附近的用户组，参加Meetup和黑客松活动，或自己组织一个！</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">边缘计算：跨越传统数据中心</a><ul>
+<li><a class="reference internal" href="#introduction">介绍</a></li>
+<li><a class="reference internal" href="#what-is-cloud-edge-computing">什么是边缘计算？</a><ul>
+<li><a class="reference internal" href="#a-deeper-exploration-of-edge-computing-considerations">深入探索边缘计算的考虑因素</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exploring-characteristics">探索功能特性及案例</a><ul>
+<li><a class="reference internal" href="#use-cases">案例</a><ul>
+<li><a class="reference internal" href="#data-collection-and-analytics">数据采集及分析</a></li>
+<li><a class="reference internal" href="#security">安全</a></li>
+<li><a class="reference internal" href="#compliance-requirements">合规要求</a></li>
+<li><a class="reference internal" href="#network-function-virtualization-nfv">网络功能虚拟化</a></li>
+<li><a class="reference internal" href="#real-time">实时性</a></li>
+<li><a class="reference internal" href="#immersive">拟真</a></li>
+<li><a class="reference internal" href="#network-efficiency">网络效率</a></li>
+<li><a class="reference internal" href="#self-contained-and-autonomous-site-operations">自成一体和自动化操作</a></li>
+<li><a class="reference internal" href="#privacy">机密性</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scenarios">场景</a></li>
+<li><a class="reference internal" href="#challenges">挑战</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion-and-call-to-action">总结与行动计划</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, OpenStack Foundation.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

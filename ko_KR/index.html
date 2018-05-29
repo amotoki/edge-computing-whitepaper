@@ -1,0 +1,362 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko_KR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cloud Edge Computing: 데이터 센터를 넘어서 &#8212; edge-computing  documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="색인" href="genindex.html" />
+    <link rel="search" title="검색" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cloud-edge-computing-beyond-the-data-center">
+<h1>Cloud Edge Computing: 데이터 센터를 넘어서<a class="headerlink" href="#cloud-edge-computing-beyond-the-data-center" title="제목 주소">¶</a></h1>
+<div class="section" id="introduction">
+<h2>소개<a class="headerlink" href="#introduction" title="제목 주소">¶</a></h2>
+<p>지난 10여년 동안, 중앙 집중화된 클라우드 컴퓨팅은 표준 IT 제공 플랫폼으로 간주되어져 왔습니다. 비록 어디에서나 클라우드 컴퓨팅을 볼 수 있지만, 점점 커지는 요구사항과 워크로드가 그 한계를 드러내기 시작하였습니다. 컴퓨팅과 스토리지 자원이 상대적으로 풍부하고 중앙화된 강력한 데이터 센터를 바라보는 중앙 집중적인 관점과는 반대로, 하이퍼바이저와 관리 플랫폼을 차지하는 공간을 지원하기 위해 최적화를 가져다 주기 위한 고려 사항은 거의 없는 상황입니다. 안정적이지 않거나 대역폭이 제한된 네트워크 연결만 도달하는 자원이 제한된 노드, 또는 여러 사이트에 걸쳐 널리 퍼져있는 컴퓨팅 용량을 필요로 하는 응용 프로그램에 대한 수요에 관한 여러 아이디어를 지원하고자 필요로 하는 요구사항들을 고려하는 클라우드 개발자가 많지 않습니다.</p>
+<p>새로운 응용 프로그램, 서비스, 작업 부하들은 분산 인프라를 직접 지원하기 위해 구축된 아키텍처가 아닌, 다른 유형의 아키텍처를 필요로 합니다. 원격 사이트에서 오늘날 요구 사항 (리테일 데이터 분석, 네트워크 서비스)과 미래의 혁신 (스마트시티, AR / VR)을 모두 지원하기 위해서는 가용성과 클라우드 기능에 대한 새로운 요구 사항을 필요로 합니다. 진화하는 요구에 대처하기 위해서는 클라우드에 대한 성숙도, 견고성, 유연성, 단순함이 여러 사이트와 네트워크로 확장되어야 합니다.</p>
+<p>최근 기업들은 클라우드 컴퓨팅 아키텍처를 단순화하여 관리하고 유연성있게 여러 사이트와 네트워크에 걸쳐있는 분산 인프라에 적용하기 시작했습니다. 여러 조직들은 WAN 네트워크에 걸쳐있고, 네트워크 edge 밖으로 점차 보다 작은 배포를 지원하는 클라우드 기능에 대한 필요성이 커지고 있습니다. 비록 이 접근 방식은 아직 초기 단계에 있지만, 많은 새로운 사용 사례와 시나리오들이 분산 아키텍처에서 이점을 누리게 될 것입니다.</p>
+<p>이 백서에서는 이와 같이 점차 증가하는 요구에 대해 살펴봅니다. 분산 클라우드, 포그 컴퓨팅, 4차 산업혁명 데이터센터와 같이 여러 이름으로 통칭되어져 왔지만, 이 문서 목적에서는 보편적이고 쉽게 이해 가능한 용어인 cloud edge computing을 계속 사용하고자 합니다.</p>
+<p>Edge Computing Group은 이러한 클라우드 컴퓨팅에서의 진화를 매우 흥미롭게 보고 있습니다. 그러나, 클라우드 edge 컴퓨팅을 지원하는 OpenStack 능력이 아직은 초창기 수준임을 알고 있습니다. OpenStack Summit Boston에서 발표된 초기 커뮤니티 관심을 기반으로, 2017년 9월에 이틀간 워크샵이 개최되었고 200명이 넘는 사용자와 개발자가 관련 사용 사례를 정의하고, 이를 지원하는데 필요한 도구와 아키텍처를 고려하기 위한 노력을 시작했습니다. 개념 증명 (PoC)이 완료되었고, 커뮤니티에서는 몇 가지 초기 배포를 하였습니다. Edge Computing Group은 완벽히 동작하는 edge 컴퓨팅 클라우드 인프라에 대한 필수적인 요구 사항을 기술하고자 하는 과제를 해결하고 있습니다.</p>
+<p>이 문서에서는, 다음과 같은 몇 가지 중요한 작업을 수행하는 것을 목표로 합니다:</p>
+<ol class="arabic simple">
+<li>오픈 소스 커뮤니티의 관심과 참여를 장려하는 몇 가지 기본 정의를 포함하여 클라우드 edge 컴퓨팅과 관련된 대화를 형성합니다.</li>
+<li>광범위한 적용을 위해 필요한 개발 도구와 표준에 대한 보다 일반적인 오픈 소스, 그리고 OpenStack 커뮤니티를 안내합니다.</li>
+<li>분산형 클라우드 모델을 적용하기 위해 현재 도구, 표준, 아키텍처를 어떻게 변경해야 하는지를 알아봅니다.</li>
+</ol>
+<p>우리의 목표를 달성하기 위해 할 일이 많이 있으며, 오픈 소스 커뮤니티 전체가 클라우드 edge 컴퓨팅에 대한 새로운 요구 사항을 충족시키기 위한 도구를 만들거나 적용할 수 있는 노력과 기회에 함께 참여할 것을 환영하며, 장려합니다.</p>
+</div>
+<div class="section" id="what-is-cloud-edge-computing">
+<h2>클라우드 edge 컴퓨팅은 무엇입니까?<a class="headerlink" href="#what-is-cloud-edge-computing" title="제목 주소">¶</a></h2>
+<p>Edge 컴퓨팅에 대한 많은 중복(overlapping)과 때로는 상반되는 정의가 존재한다는 것을 강조할 필요가 있습니다. Edge 컴퓨팅은 많은 사람들에게 많은 뜻을 가지고 있습니다. 그러나 우리의 목적에 맞는 가장 성숙한 견해는 응용 프로그램 개발자와 서비스 공급자에게 클라우드 컴퓨팅 기능은 물론 네트워크 edge에서 IT 서비스 환경을 제공한다는 것입니다.</p>
+<p>우리의 목표는 compute, 스토리지, 대역폭에 대한 데이터 입력이나 최종 사용자에게 훨씬 가깝게 제공할 수 있도록 전달하는 것입니다. Edge Computing 환경은 모든 사이트에서 잠재적으로 높은 지연 시간과 낮고 신뢰할 수 없는 대역폭의해 특정되어집니다. 원거리 데이터 센터의 중앙 집중식 클라우드 리소스 풀로는 충족할 수 없는 차별화된 서비스 제공과 응용 프로그램 기능 가능성을 제공합니다. 일부 또는 모든 처리 기능을 최종 사용자나 데이터 수집 지접에 더 가깝게 이동시킴으로써 cloud edge computing은 응용 프로그램에 대한 지연 효과를 최소화하여 널리 분산된 사이트의 영향을 완하할 수 있습니다.</p>
+<p>Edge computing은 WAN 네트워크를 통해 네트워크 서비스를 가상화하여 데이터 센터에서 한 걸음 더 나왔습니다. 초기 사용 사례는 클라우드 컴퓨팅 사용자가 익숙해진 유연함과 간단한 도구를 제공하는 플랫폼을 활용하려는 욕구에서 발생했습니다.</p>
+<p>새로운 edge computing 기능이 등장하면서, 중앙 집중식 데이터 센터 구축의 필요성에 더이상 구속되지 않는 컴퓨팅 패러다임으로 변화가 진행되었습니다. 특정 애플리케이션에서 cloud edge computing은 가상화와 클라우드 컴퓨팅, 산업용 IoT나 멀리 떨어진 수천, 수백만의 위치에 떨어져있는 실시간 수자원 사용량 모니터링과 같은 다양한 유즈케이스를 적용할 수 있는 수천개의 대규모 분산 노드를 통하여 가능성을 만들고 있습니다.</p>
+<p>많은 소유권과 오픈 소스 edge computing 기능은 분산 클라우드에 의존하지 않고 이미 존재하고 있습니다. 일부 공급업체에서는 이것을 &quot;device edge&quot;라고 합니다. 이 접근법에서의 구성요소에는 IoT 게이트웨이나 NFV 장비와 같은 요소가 포함됩니다. 그러나 분산형 edge 인프라를 구축하기위해 (아직 초기 단계인) 도구와 아키텍처가 점점 더 많은 애플리케이션에서 edge cloud 기능이 필요해질 것입니다. 시장에서는 cloud edge computing을 대한 더 나은 기능을 계속 요구할 것으로 보입니다.</p>
+<p>Edge computing 기능은 다음을 포함하나 다음 기능에만 국한하지는 않습니다:</p>
+<ul class="simple">
+<li>다양한 인프라 전반에 대한 일관된 운영 패러다임</li>
+<li>대규모 분산된 환경 (수천 개의 글로벌한 지역)에서 수행할 수 있는 능력.</li>
+<li>전 세계에 분산된 원격 위치에 위치한 고객에게 네트워크 서비스를 제공해야 하는 필요성.</li>
+<li>응용 프로그램 통합, 오케스트레이션, 서비스 제공 요구 사항.</li>
+<li>하드웨어 제한과 비용 제약.</li>
+<li>제한되거나 간헐적인 네트워크 연결</li>
+<li>엄격한 낮은 대기 시간 요구 사항 (AR/VR, 음성 등)으로 응용 프로그램 처리하는 방법.</li>
+<li>민감한 개인 데이터를 로컬에 보관하기 위한 지오 코딩과 요구 사항</li>
+</ul>
+<div class="section" id="a-deeper-exploration-of-edge-computing-considerations">
+<h3>Edge Compuing 고려 사항에 대한 심층 탐구<a class="headerlink" href="#a-deeper-exploration-of-edge-computing-considerations" title="제목 주소">¶</a></h3>
+<p>Edge computing에서 &quot;edge&quot;는 관리 도메인 외곽에 있는 개별 데이터 리소스와 최종 사용자를 최대한 가까운 것을 가리킵니다. 이 개념은 통신 네트워크, 소매점과 같이 분산된 POP(point of presence)가 있는 대기업, IoT와 관련된 응용 프로그램에 적용됩니다.</p>
+<a class="reference internal image-reference" href="_images/1-edge-computing.png"><img alt="_images/1-edge-computing.png" src="_images/1-edge-computing.png" style="width: 100%;" /></a>
+<p>Edge computing의 특징 중 하나는 애플리케이션이 edge 위치와 밀접하게 관련되어 있다는 것입니다. 통신 회사에서의 &quot;edge&quot;는 최종 사용자와 가까운 지점을 가리키고 공급자에 의해 제어되며, 잠재적으로 최종 사용자 장치에서 실행되는 워크로드가 있는 요소를 나타냅니다. 대기업에서의 &quot;edge&quot;는 애플리케이션, 서비스, 워크로드(예로 소매점이나 공장)을 나타냅니다. 이 정의에서 edge 는 IoT나 센서 장치와 같은 최소한의 클라우드 아키텍처조차도 지원할 수 있는 용량이 극히 제한된 최종 장치를 나타내는 것은 아닙니다. Edge computing에 대한 많은 논의가 그 차이를 나타내지 않기 때문에 이는 중요한 고려사항 중 하나입니다.</p>
+<p>Edge computing은 다음과 같은 점에서 데이터 센터 computing과 유사합니다:</p>
+<ul class="simple">
+<li>Compute, 스토리지, 네트워크 리소스를 포함합니다.</li>
+<li>리소스는 많은 사용자와 많은 애플리케이션에서 공유하여 사용할 수 있습니다.</li>
+<li>리소스 풀에 대한 가상화와 추상화로 인한 좋은 점이 있습니다.</li>
+<li>상용 하드웨어를 활용할 수 있는 좋은 점이 있습니다.</li>
+<li>상호 운용성을 지원하기 위한 API를 지원합니다.</li>
+</ul>
+<p>Edge computing과 큰 데이터 센터에서의 computing의 다른점은 다음과 같습니다:</p>
+<ul class="simple">
+<li>Edge 사이트는 가능한한 최종 사용자와 가장 가깝습니다. 높은 레이턴시와 신뢰할 수 없는 연결을 통해 서비스 경험을 향상 시킵니다.</li>
+<li>AR/VR 기능을 위한 GPU/FPGA 플랫 폼과 같은 특수 하드웨어가 필요할 수 있습니다.</li>
+<li>Edge는 서로 다른 위치에 분산되어 있는 수많은 사이트로 확장이 가능합니다.</li>
+<li>Edge 사이트 위치와 접속 링크의 인증을 종료하는 것이 중요합니다. 사용자 가까이에서 실행해야 하는 응용 프로그램은 edge의 오른쪽에 있어야 합니다. 응용 프로그램 위치는 edge computing에서 중요합니다.</li>
+<li>사이트의 전체 풀은 동적인 것으로 간주될 수 있습니다. 물리적으로 분리된 edge 사이트는 경우에 따라 WAN 연결로 코어와 다른것들이 서로 연결됩니다. Edge 사이트는 시간이 지남에 따라 인프라 풀에 추가되고 빠집니다.</li>
+<li>Edge 사이트는 원격으로 제어되며 잠재적으로 자동화된 상태이기에 원격 관리가 필요합니다. 도구는 사이트에 대한 주기적인 네트워크 액서스를 지원해야 합니다.</li>
+<li>Edge는 데이터 센터 규모에서 단일 장치까지인 사이트 크기와 규모에 대한 큰 차이를 지원합니다.</li>
+<li>Edge 사이트는 리소스가 제한될 수 있습니다. 공간 또는 전력 필요 요건때문에 기존 사이트에 용량을 추가하는 것이 제한됩니다.</li>
+<li>대용량의 멀티 테넌시는 일부 유스 케이스에 필요합니다.</li>
+<li>&quot;External cloud&quot; 도메인에서의 위험이 서비스에 영향을 미치지 않도록 데이터 센터 클라우드에서 edge computing을 격리해야합니다.</li>
+</ul>
+<p>Edge computing 개념은 edge 사이트(예: compute, 네트워크, 스토리지 인프라)와 함께 실행되는 애플리케이션 (워크로드)을 모두 포함해야 합니다. Edge computing 환경에서 응용 프로그램은 compute, 블록 저장소, 오브젝트 저장소, 가상 네트워킹, 베어 메탈, 컨테이너를 제공하는 클라우드에서 전부 또는 일부의 기능을 잠재적으로 활용할 수 있습니다.</p>
+<p>클라우드 컴퓨팅에서 edge computing을 정의하고 분리하는 필수 기능은 다음과 같습니다:</p>
+<ul class="simple">
+<li>잠재적으로 광범위하게 분산된 여러 사이트의 동적 풀을 지원하는 기능,</li>
+<li>잠재적으로 신뢰할 수 없는 네트워크 연결</li>
+<li>네트워크 상의 사이트에서 풀기 어려운 리소스 제약 조건의 가능성</li>
+</ul>
+</div>
+</div>
+<div class="section" id="exploring-characteristics">
+<h2>특징 및 사용 사례 살펴보기<a class="headerlink" href="#exploring-characteristics" title="제목 주소">¶</a></h2>
+<p>지금까지 edge computing 특성, 사용 사례, 시나리오에 대해 무엇을 알고 있습니까?</p>
+<p>Cloud edge computing을 주도해야하는 필요성은 사용자나 end-point 데이터 소스에 더 가깝도록 서비스 제공하기위해 필요합니다. Edge computing 환경은 코어 용량과 연계하여 작동하지만 핵심 연결성에 대한 부당한 요구 없이 향상된 최종 사용자 경험을 제공하는 것을 목표로 합니다. 개선 결과는 다음과 같습니다:</p>
+<ol class="arabic simple">
+<li>레이턴시 단축: Compute 가 멀리 떨어져있다면, 최종 사용자 레이턴시를 낮을 수 있습니다. 예를 들어, 인스턴스를 만들거나, 반응형 원격 데스트탑이 가능하거나, 성공적인 AR 프로그램이나, 더 좋은 사양의 게이밍 성능을 개선할 수 있습니다.</li>
+<li>대역폭 제한 완화: 워크로드를 최종 사용자나 데이터 수집 지점에 더 가깝게 이동시키는 기능을 사용하여 사이트에서 제한된 대역폭 영향을 줄일 수 있습니다. 이는 IoT나 NFV 워크 로드의 경우 처럼 edge 노드 서비스가 처리를 위해 대용량 데이터를 코어로 전송해야하는 필요성을 줄이는 경우에 특히나 유용합니다. 데이터 축소및 로컬 프로세싱은 응답성이 뛰어난 애플리케이션으로 변환할 수 있으며 장거리 데이터 전송시 테라바이트의 데이터 전송 비용을 절감할 수 있습니다.</li>
+</ol>
+<p>하지만 절충안이 존재합니다. Edge computing을 제공하려면 배포수를 대폭 늘릴 필요가 있습니다. 이는 광범위한 배포에 대한 중요한 도전과제를 해결합니다. 단일 클라우드를 관리하는데 10명의 팀이 필요한 경우, 어떻게하면 수백, 수천대의 작은 클라우드 환경을 대처할 수 있을까요? 몇가지 요구사항은 다음과 같습니다:</p>
+<ol class="arabic simple">
+<li>인프라에 대한 표준화와 일관성이 필요합니다. 각 위치는 알려진 정량과 비슷해야합니다.</li>
+<li>관리가능성은 자동화되어야 합니다. 배치, 교체, 복구 가능한 모든 장애는 간단하고 직선적이어야 합니다.</li>
+<li>하드웨어 장애에 간단하고 비용 효율적인 계획을 세워야합니다.</li>
+<li>국지적으로 내결함성이 있는 설계가 중요할 수 있습니다. 특히 원격이나 접근할 수 없는 환경에서 제로 터치 인프라가 바람직합니다. 이는 중복 하드웨어 구매와 실행 비용, 정전과 응급 복구 비용의 균형을 맞추는 문제입니다. 고려 사항은 다음과 같습니다:<ol class="loweralpha">
+<li>이 위치는 자급자족 할 필요가 있습니까?</li>
+<li>해당 위치에서 오류가 있는 경우, 아무도 현장을 반문하여 해결할 수 없어며, 로컬 예비 부품이 거의 없습니다.</li>
+<li>실패를 용인해야 합니까? 만약 그렇다면, 누군가 수리할 수 있는 시간은 얼마나 걸릴 것 같습니까? (2시간, 1주일, 1개월)</li>
+</ol>
+</li>
+<li>손쉬운 유지 보수가 필요합니다. 숙련된 원격 관리자가 소프트웨어를 재설치하거나 유지 관리하는 동안 숙련되지 않은 기술자가 직접 수리나 교체를 수행해야합니다.</li>
+<li>2.물리적인 디자인이 고려되어야 합니다. 대부분의 edge computing 환경에서 이상적으로 확인할 수 없는 제한된 전력량, 먼지, 습기, 진동에 대해서 고려해야합니다.</li>
+</ol>
+<div class="section" id="use-cases">
+<h3>사용 사례<a class="headerlink" href="#use-cases" title="제목 주소">¶</a></h3>
+<p>사용 사례를 특성화하는데 수십 가지 방법이 있을 수 있으며, 이 문서는 짧아 자세한 목록을 보여 줄 수 없습니다. 그러나 관점을 분명히하고 공동 작업 기회를 강조하는데 도움이 되는 몇가지 예가 존재합니다.</p>
+<p>분산 아키텍처의 좋은 점을 누리는 네가지 주요 워크로드 요구 사항은 분석, 컴플라이언스, 보안, NFV입니다.</p>
+<div class="section" id="data-collection-and-analytics">
+<h4>데이터 수집과 분석<a class="headerlink" href="#data-collection-and-analytics" title="제목 주소">¶</a></h4>
+<p>데이터가 마이크로 사이트의 대규모 네트워크에서 종종 수집되는 IoT는 edge computing 모델로 혜택을 받는 애플리케이션의 좋은 예입니다. 중앙 집중된 데이터 센터에 있는 분석 엔진에 대한 제한된 네트워크 연결을 통해 대량의 데이터를 전송하는 것은 비생산적입니다. 충분히 반응하지 않을 수 있으며, 과도한 레이턴시를 발생할 수 있으며, 귀중한 대역폭을 낭비합니다. Edge 장치는 테라 바이트급의 데이터를 생성할 수 있기에 소스 근처에 존재하는 데이터를 분석하고 압축된 정보에 대한 일괄 처리를 중앙 집중식 시스템으로 보내는 것보다는 분석을 edge 데이터 소스에 가깝게 만드는 것이 비용적인 면에서 효과적일 수 있습니다. 여기에는 일부 정보 손실을 대비하여 데이터를 코어로 전송하는 비용 균형을 맞추는 거래가 있을 수 있습니다.</p>
+</div>
+<div class="section" id="security">
+<h4>보안<a class="headerlink" href="#security" title="제목 주소">¶</a></h4>
+<p>안타깝게도 모바일 핸드셋과 IoT 센서를 비롯한 첨당 장치가 늘어남에따라 endpoint 의 확산을 이용하는 새로운 공격 경로가 등장하고 있습니다. Edge computing은 보안 요소를 원래의 공격 소스에 더 가깝게 이동시킬 수 있는 기능을 제공하고, 고성능 보안 애플리케이션을 가능하게하며, 침입과 위험으로부터 코어를 방어하는데 도움이 되는 계층의 수를 증가시킵니다.</p>
+</div>
+<div class="section" id="compliance-requirements">
+<h4>규정 준수 요구 사항<a class="headerlink" href="#compliance-requirements" title="제목 주소">¶</a></h4>
+<p>컴플라이언스는 geofencing, 데이터 주권, 저작권 시행에 이르기까지 광범위한 요구사항을 충족합니다. 지리 및 정치적 경계를 기반으로 데이터에 대한 접근을 제한하고, 저작권 제한에 따라 데이터 스트림을 제안하며, 특정 규정이 있는 장소에 데이터를 저장하는 것은 모두 edge computing 인프라로 달성 가능하고 시행이 가능합니다.</p>
+</div>
+<div class="section" id="network-function-virtualization-nfv">
+<h4>네트워크 기능 가상화 (NFV)<a class="headerlink" href="#network-function-virtualization-nfv" title="제목 주소">¶</a></h4>
+<p>NFV (Network Functional Virtualization)는 인프라 기능을 제공하므로 전형적인 edge computing 애플리케이션의 핵심입니다. 통신 사업자는 edge computing 인프라의 일부로 가상 네트워크 기능을 실행하여 서비스 제공 모델을 변형하여 사용합니다. 효율성을 극대화하고 비용/복잡성을 최소화하기 위해 edge computing 인프라에서 NFV를 실행하는 것이 합리적입니다.</p>
+</div>
+<div class="section" id="real-time">
+<h4>실시간<a class="headerlink" href="#real-time" title="제목 주소">¶</a></h4>
+<p>AR/VR, 커넥티드카, 원격 의료, tactile internet 산업 4.0 및 스마트 도시와 같은 실시간 응용 프로갦은 수 밀리 초 이상의 대기 시간을 허용할 수 없으며 jitter나 레이턴시 변동에 매우 민감합니다. 예를 들어 커넥티드카는 레이턴시가 짧고 대역폭이 높아야하며 사용자 인근에서 계산과 콘덴츠 캐싱에 의존하므로 edge 용량이 필요합니다. 특히 폐 루프 시스템 자동화에서 고가용성을 유지하는데 사용되는 많은 시나리오에서 수십 밀리초 단위의 응답 시간이 필요하며 edge computing 인프라 없이 충족될 수 없습니다.</p>
+</div>
+<div class="section" id="immersive">
+<h4>Immersive<a class="headerlink" href="#immersive" title="제목 주소">¶</a></h4>
+<p>Edge computing은 대역폭 기능을 확장하여 새로운 immersive 애플리케이션의 잠재력을 열어줍니다. 이중 일부는 AR/VR, 4K 비디오 및 건강 관리와 같은 업종의 360° 영상을 포함합니다. TCP와 같은 프로토콜이 무선 네트워크 트래픽의 급격한 변화에 잘 응답하지 않기 때문에 edge 에서 컨텐츠를 캐싱하고 최적화하는 것이 필수 사항이 되었습니다. 라디오/네트워크 정보에 대한 실시간 접근에 연결된 edge computing 인프라는 피크 시간대에 최대 20%까지 비디오 지연과 지연을 줄이고 무선 상태에따라 비디오 피드 비트율을 변경할 수 있습니다.</p>
+</div>
+<div class="section" id="network-efficiency">
+<h4>네트워크 효율성<a class="headerlink" href="#network-efficiency" title="제목 주소">¶</a></h4>
+<p>많은 애플리케이션은 레이턴시에 민감하지 않으며 많은 양의 주변 compute나 저장소 용량을 필요로 하지 않으므로 이론적으론 중앙 집중식 클라우드에서 실행될 수 있습니다. 그러나 대역폭 요구 사항이나 compute 요구 사항은 여전히 edge computing를 이용하여 보다 효율적인 방법으로 만들 수 있습니다. 비디오 감시 및 IoT 게이트웨이를 포함하여 이러한 작업 부하 중 일부는 오늘날 일반적으로 사용되는 반면 안면 인식 및 차량 번호판 인식을 비롯한 기타 기능은 새로운 기능입니다. 이러한 많은 기능을 갖춘 edge computing 인프라는 대역폭 요구 사항을 줄여 줄뿐만아니라 애플리케이션의 가치있게 해주는 기능 (예: 비디오 감시 동작 감지 및 위협 인식)을 위한 플랫폼으로 제공할 수 도 있습니다. 이러한 애플리케이션의 대부분 데이터의 90%는 일상적이고 관련성이 없으므로 중앙 집중식 클라우드로 전송하는 것은 비용이 많이 들고 많은 경우, 네트워크 대역폭이 부족하기 때문에 낭비입니다. 에외 및 변경 사항이 있는 edge에서 데이터를 정렬하고 실행 가능한 데이터에 대해서만 보고하는 것이 더 좋은 방법입니다.</p>
+</div>
+<div class="section" id="self-contained-and-autonomous-site-operations">
+<h4>독립적이고 자율적인 사이트 운영<a class="headerlink" href="#self-contained-and-autonomous-site-operations" title="제목 주소">¶</a></h4>
+<p>오늘날까지도 많은 환경에서 제한적이고 신뢰할 수 없으며 예측할 수 없는 연결이 있습니다. 여기에는 운송 (비행기, 버스, 선박), 채광 작업 (석유 굴착 장치, 파이프 라인, 광산), 전력 인프라 (풍력 발전소, 태양광 발전소), 일반적으로 매장과 같이 연결성이 좋은 환경까지 포함될 수 있습니다. Edge computing은 필요할때나 네트워크 연결을 사용할 수 없는 경우 사이트가 반자동으로 작동하거나 기능을 유지하도록하여 이러한 환경을 깔끔하게 지원합니다. 이 접근법의 가장 좋은 예는 네트워크에 연결되지 않은 경우에도 판매점 (POS) 시스템을 유지 관리해야하는 소매점에서 필요할 수 있습니다.</p>
+</div>
+<div class="section" id="privacy">
+<h4>프라이버시<a class="headerlink" href="#privacy" title="제목 주소">¶</a></h4>
+<p>기업은 워크로드, 연결제한, 개인정보에 따라 edge computing 용량이 많이 필요할 수 있습니다. 예를 들어 클라우드로 보내기전에 개인 건강 정보 (PHI)를 익명화해야하는 의료 애플리케이션은 edge computing 인프라를 활용하여 수행할 수 있습니다.</p>
+<p>Cloud edge computing의 이점을 누릴수 있는 요구 사항을 확인하는 또 다른 방법은 이를 배포할 회사 타입입니다. 운영자 애플리케이션은 운영자가 작성하고 관리하는 edge computing 인프라에 적용되는 워크로드입니다 (예를 들어, 통신회사). 타사 애플리케이션은 다른 edge computing 인프라를 활용하기 위해 기존 edge 인프라에서 실행되도록 조직에의해 구축됩니다. 어떤 애플리케이션이라도 클라우드에서 제공하는 기능(compute, 블록 저장소, 오브젝트 저장소, 가상 네트워킹, 베어메탈, 컨테이너)의 일부 또는 전부를 활용할 수 있다는 점은 주목할 가치가 있습니다.</p>
+</div>
+</div>
+<div class="section" id="scenarios">
+<h3>시나리오<a class="headerlink" href="#scenarios" title="제목 주소">¶</a></h3>
+<p>Edge computing 패러다임의 기본 특성은 인프라가 최종 사용자에 더 가깝고 사이트 배포 규모가 크며 edge 노드가 WAN 네트워크로 연결된다는 것입니다. 몇가지 시나리오를 자세히 검토하면 사용 사례에 연결되는 현재 기능을 평가할 수 있을 뿐만아니라 취약점과 개선 의 기회를 강조할 수 있습니다.</p>
+<ol class="arabic">
+<li><p class="first">소매/금융/원격 위치 &quot;cloud in a box&quot;: 특정 회사나 업계 종사자에게 맞게 사용자 지정된 애플리케이션 제품군을 지원하는 Edge computing 인프라입니다. 기업에서 종종 사용하는 edge computing 인프라는 궁극적으로 분산 인프라에 결합되어 하드웨어 풋 프린트를 줄이고 여러 사이트에서 표준으로 구현하여 edge에 위치한 애플리케이션을 대체할 수 있는 유연성을 제공합니다 (동일한 애플리케이션을 모두 HW와는 관계업는 노드입니다), 탄성 향상 및 간헐적인 WAN 연결에 대한 문제를 해결합니다. 자체 포함된 애플리케이션에 대한 컨텐츠 캐시나 compute, 저장소, 네트워킹은 연결이 제한된 설정에서 edge computing을 명백한 사용처입니다.</p>
+</li>
+<li><p class="first">모바일 연결성: 모바일 네트워크는 적어도 5G가 널리 보급될때까지 제한적이고 예측할 수 없는 대역폭으로 특징 지워질 것이므로 모바일/무선 네트워크는 cloud edge computing을 위한 공통된 환경 요소일 수 있습니다. 원격 수리 및 원격 진료를 위한 증강현실, 유틸리티 (물, 가스, 전기, 시설관리) 데이터, 재고, 공급망 및 운송 솔루션, 스마트 도시, 스마트 도로와 원격 보안 애플리케이션을 캡처하기위한 IoT 장치는 모두 모바일 네트워크에대한 규모는 더 크거나 작습니다. 최종 사용자에게 워크로드를 더 가깝게 옮길 수 있는 edge computing의 이점을 모두 누릴 수 있습니다.</p>
+<a class="reference internal image-reference" href="_images/2-mobile-connectivity.png"><img alt="_images/2-mobile-connectivity.png" src="_images/2-mobile-connectivity.png" style="width: 100%;" /></a>
+</li>
+<li><p class="first">Network-as-a-Service (NaaS): 근본적으로 다른 환경에서 동일한 네트워크 서비스 애플리케이션 경험을 제공할 필요성때문에 NaaS 사용 사례는 edge에 배포 플랫폼이 적고 신뢰할 수 없거나 제한된 WAN 네트워크 연결을 edge 서비스 외부에서 지원하는 강력한 중앙 관리 도구를 필요로합니다. 이 시나리오의 주요 특징은 소형 하드웨어 풋프린트, 이동 (네트워크 연결방법) 및 끊임없이 변화하는 워크로드, 데이터와 애플리케이션의 하이브리드 위치입니다. 이것은 마이크로 노드를 지원하는 인프라가 필요한 경우 중 하나입니다. 비 전통적 패키지 (대부분 냉각된 데이터 센터의 19인치 랙이 아님)에서 적은 양의 계산이 가능합니다. NaaS는 edge에서 수천 또는 수만 개의 노드에 대한 지원을 필요로하며 mesh나 계층적 아키텍처뿐만 아니라 필요에 따라 스핀업하고 완료될때 종료될 수 있는 주문형 사이트를 지원해야합니다. API와 GUI는 많은 수의 compute 노드가 동일한 데이터 센터에 존재하는 대신 다른 위치를 가질 것이라는 점을 반영하여 변경해야합니다.</p>
+<a class="reference internal image-reference" href="_images/3-network-as-a-service.png"><img alt="_images/3-network-as-a-service.png" src="_images/3-network-as-a-service.png" style="width: 100%;" /></a>
+</li>
+<li><p class="first">Universal Customer Premises Equipment (uCPE): 이 시나리오는 이미 배포되고 있으며 어플라이언스 크기의 하드웨어 풋프린트에 대한 지원이 필요하고, 높은 가용성이 요구되는 일반적이고 안정적인 워크로드로 제한된 네트워크 연결이 특징입니다. 또한 수백 또는 수천 개의 노드에서 데이터와 애플리케이션의 하이브리드 위치를 지원하는 방법이 필요하며 기존 uCPE 배포를 확장하는 것이 새로운 요구 사항이 될 것입니다.</p>
+<p>이는 여러 사이트에서 서로 다른 일련의 서비스 체인 애플리케이션이 필요하거나 필요한 여러 애플리케이션 집합이 필요한 사이트에서는 여전히 NFV 애플리케이션에 적용될 수 있습니다. Mesh나 계층적 아키텍처는 지역화된 용량과 간헐적인 네트워크 연결로인해 테이터 처리를 저장하고 전달해야하는 필요성으로 지원되어야합니다. 노드를 원격으로 관리할 수 있는 능력과 결합된 자체 치유와 자체 관리가 필수입니다.</p>
+</li>
+<li><p class="first">Satellite enabled communication (SATCOM): 이 시나리오는 수많은 원격 터미널 장치를 특징으로 하며, 종종 가장 까다로운 조건으로 배포됩니다. 동시에 매우 높은 레이턴시, 제한된 대역폭, 위성 통신 비용을 고려할때 호스팅 서비스에 이러한 분산 플랫폼을 활용하는 것이 좋습니다. 이러한 사용 사례의 특징을 가진 사례로는 선박 (어선에서 유조선까지), 항공기, 석유 굴칙장치, 채굴 작업, 군사 등급 인프라가 포함될 수 있습니다.</p>
+<a class="reference internal image-reference" href="_images/4-satellite-enabled-communication.png"><img alt="_images/4-satellite-enabled-communication.png" src="_images/4-satellite-enabled-communication.png" style="width: 100%;" /></a>
+</li>
+</ol>
+</div>
+<div class="section" id="challenges">
+<h3>도전<a class="headerlink" href="#challenges" title="제목 주소">¶</a></h3>
+<p>전 세계적으로 이미 진행중인 edge 배포에 대한 사례가 많이 있지만, 확산되고 널리 사용되고 있는 문제와 한계를 해결하기 위해서는 새로운 방식의 사고를 필요로합니다.</p>
+<p>우리는 edge computing 플랫폼이 기존 데이터 센터 중심의 클라우드보다 훨씬 내 결합성이 뛰어나고 견고하다는 것을 입증했습니다. 하드웨어와 애플리케이션 라이프 사이클을 지원하는 플랫폼 서비스 측명에서 더욱 엄격하게 적용되었습니다. 이러한 최첨단 사용 사례에 표준 데이터 센터 인프라에서 수행하는 유지관리와 지원 기능이 있다록 가정 할 수 없습니다. 이러한 시나리오에서는 모든 인프라와 플랫폼 스택의 제로 터치 프로비저닝, 자동화, 자율적인 조정이 매우 중요합니다.</p>
+<p>그러나 고려해야 할 다른 문제가 있습니다.</p>
+<p>첫째, edge 리소스 관리 시스템은 어셈블리가 WAN 인터커넥트를 기반으로하는 지리적으로 분산된 IaaS 인프랄르 운영하고 사용할 수 있는 시스템을 제공하는 일련의 고급 메커니즘을 제공해야합니다. 바꾸어 말하면, 앞서 말한 특징을 다루기 위해서 IaaS 핵심 서비스를 수정 (필요할 경우 확장) 해아합니다. 네트워크 단절/대역폭, compute와 스토리지 관점에서의 제한된 용량, 무인 배포 등이 포함됩니다.</p>
+<p>예측 가능한 요구 사항은 다음과 같습니다:</p>
+<ul class="simple">
+<li>머신/컨테이너 라이프 사이클 (구성, 스케줄링, 배포, 일시 중지/다시 시작, 종료)을 관리하는 가상 머신/컨테이너/베어메탈 관리자.</li>
+<li>템플릿 파일을 담당하는 이미지 관리자 (가상머신/컨테이너 이미지).</li>
+<li>인프라에 연결성을 제공하는 네트워크 관리자: 가상 네트워크와 사용자를 위한 외부 접근.</li>
+<li>Edge 애플리케이션에 스토리지 서비스를 제공하는 스토리지 관리자.</li>
+<li>분산된 인프라를 운영하고 사용하기 위한 사용자 인터페이스를 제공하는 도구.</li>
+</ul>
+<p>이러한 요구는 비교적 분명하게 기존 프로젝트를 활용하고 적응함으로써 충족될 수 있습니다. 그러나 edge computing에 대한 다른 요구 사항은 더욱 까다로울 수 있습니다. 여기서는 다음이 포함되지만, 이에 국한되지 않습니다:</p>
+<ul class="simple">
+<li>WAN 연결을 통한 스토리지 레이턴시 처리.</li>
+<li>Edge에 강화된 보안. 필요한 경우 시정 조치를 자율적으로 수행할 수 있는 기능을 통해 각 사이트의 물리시스템과 애플리케이션 무결성을 모니터링합니다.</li>
+<li>모든 노드에서 동시에 리소스 사용률을 모니터링 합니다.</li>
+<li>다수의 edge 사이트와 워크로드를 관리하고 조정하는 조정 도구로, 잠재적으로 peering control plane 또는 &quot;self-organizing edge&quot;로 연결됩니다.</li>
+<li>IaaS 코어 서비스에 연게된 edge 플랫폼 (또는 클라우드에대한 클라우드) 연합체에 대한 조율을 탐구하고 소개.<ul>
+<li>초기 소프트웨어 배포와 자원 관리 시스템 구성 요소의 업그레이드를 포함하여 자동화된 edge 위임/해임 작업</li>
+<li>자동화된 데이터와 워크로드 재배치 - 지리적으로 분산된 하드웨어에서 로드 밸런싱.</li>
+</ul>
+</li>
+<li>불연속적인 네트워크 링크에 대처하기 위해 인프라의 &quot;core&quot;에서 추상화된 상태 전달의 동기화의 일부 폼이 필요합니다.</li>
+<li>제한된 연결성으로 인해 네트워크 파티셔닝 문제를 처리하는 새로운 방법. 짧은 연결 해제와 긴 연결 해제를 모두 지원.</li>
+<li>다음을 포함한 edge 애플리케이션 라이프 사이클을 관리하는 도구:<ul>
+<li>애플리케이션 구성요소의 대기 시간 요구사항을 처리하기위한 고급 배치 제약 조건을 정의합니다.</li>
+<li>안정적인 배치 요구사항 (초기 배치)을 충족시키기위한 애플리케이션의 프로비저닝/스케줄링.</li>
+<li>내부/외부 이벤트(모빌리티 사용 사례, 실패, 성능 고려 사항 등)에 따라 데이터와 워크로드 재배치.</li>
+</ul>
+</li>
+<li>통합 위치 인식: 모든 edge 배포가 동일한 애플리케이션을 통시에 요구하지는 않습니다. 위치와 수요에 대한 인식이 필요합니다.</li>
+<li>매크로 수준에서 전체 아키텍처와 관리 도구를 설계할 때 제한된 리소스와 원격 사이트에서의 확장 능력이 제한된 개별 하드웨어를 고려해야합니다.Mesh 네트워크를 통해 이웃이거나 계층적 네트워크의 핵심요소에서 다른 사이트의 요청에 따라 원격 리소스를 확보할 수 있다는 개념은 하드웨어 배포의 비효율없이 로컬 요구의 변동을 충족시킬 수 있음을 의미합니다.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="conclusion-and-call-to-action">
+<h2>결론과 행동 요청<a class="headerlink" href="#conclusion-and-call-to-action" title="제목 주소">¶</a></h2>
+<p>Edge computing은 OpenStack의 구성 요소와 아키텍처에만 국한되지 않으며, OpenStack은 cloud edge computing을 위한 플랫폼으로 매력적인 이유가 있습니다. Edge Computing Group 은 오픈 소스 컴뮤니티에 이러한 과제와 가능성을 탐구할 수 있도록 요청합니다. 우리는 이러한 새로운 요구사항을 만족시키기 위한 도구를 만드는 목표를 달성하고자 해야하는 일이있다는 것을 인식하고 있습니다. 우리는 전체 오픈 소스 커뮤니티가 cloud edge computing을 정의하고 개발할 수 있는 기회에 참여할 것을 환영하며, 권유합니다. 그룹 활동에 대한 자세한 내용은 OpenStack Edge Computing 웹페이지를 참조하십시오.</p>
+<p>OpenStack 을 시작하거나 다음 리소스를 클릭하여 자세한 정보를 얻으려면, openstack.org 를 방문하십시오.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">리소스</th>
+<th class="head">개요</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>OpenStack Edge Computing 웹 페이지</td>
+<td>이전 행사의 비디오, 기고글, Edge 컴퓨팅에 대한 더 자세한 컨텐츠를 찾을 수 있는 중심 페이지입니다.</td>
+</tr>
+<tr class="row-odd"><td>OpenStack Edge Computing 메일링 리스트</td>
+<td>Edge와 Edge Computing (OpenStack에 국한되지 않는)에 대한 토론과 진행중인 활동, 조치 요청 등과 관련된 정보를 제공합니다.</td>
+</tr>
+<tr class="row-even"><td>OpenStack 서밋</td>
+<td>IT 인프라를 다루는 IT 비즈니스 리더, 클라우드 운영자, 개발자를 위한 4일간의 컨퍼런스입니다. 다가오는 서밋에서 Edge와 관련된 트랙과 세션을 찾아보십시오.</td>
+</tr>
+<tr class="row-odd"><td>인터넷 릴레이 채팅 (IRC; <a class="reference external" href="https://wiki.openstack.org/wiki/IRC">https://wiki.openstack.org/wiki/IRC</a>)</td>
+<td>Fog/Edge/대규모(Massively) 분산 클라우드 (FEMDC) SIG IRC 미팅 (온라인)은 IRC 채널 #openstack-meeting 에서 2주마다 수요일 1500 UTC에 진행됩니다.</td>
+</tr>
+<tr class="row-even"><td>OpenStack 이벤트 (<a class="reference external" href="https://www.openstack.org/community/events/">https://www.openstack.org/community/events/</a>)</td>
+<td>대중적인 OpenStack Summit과 지역 OpenStack Days를 포함한 이벤트들을 모아둔 글로벌 일정표.</td>
+</tr>
+<tr class="row-odd"><td>OpenStack 마켓플레이스 (<a class="reference external" href="https://www.openstack.org/marketplace/">https://www.openstack.org/marketplace/</a>)</td>
+<td>배포, 드라이버, 트레이닝, 서비스 등에 대한 숙련된 글로벌 에코시스템을 제공하는 One-stop 리소스.</td>
+</tr>
+<tr class="row-even"><td>전체 OpenStack 문서 (<a class="reference external" href="https://docs.openstack.org/">https://docs.openstack.org/</a>)</td>
+<td>OpenStack 클라우드를 계획하고 운용하는 모든 역할과 단계에 대한 모든 문서에 대한 찾아보기를 볼 수 있습니다.</td>
+</tr>
+<tr class="row-odd"><td>커뮤니티에 합류하신 것을 환영합니다! (<a class="reference external" href="https://www.openstack.org/community/">https://www.openstack.org/community/</a>)</td>
+<td>메일링리스트 및 IRC 채널에 가입하여, 직업 및 이벤트를 찾고, 소스 코드에 액세스 등을 합니다.</td>
+</tr>
+<tr class="row-even"><td>사용자 그룹 (<a class="reference external" href="https://groups.openstack.org/">https://groups.openstack.org/</a>)</td>
+<td>여러분 근처에 있는 사용자 그룹을 찾은 후, 밋업 및 해커톤에 참석합니다—아니면 직접 만들어보세요!</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cloud Edge Computing: 데이터 센터를 넘어서</a><ul>
+<li><a class="reference internal" href="#introduction">소개</a></li>
+<li><a class="reference internal" href="#what-is-cloud-edge-computing">클라우드 edge 컴퓨팅은 무엇입니까?</a><ul>
+<li><a class="reference internal" href="#a-deeper-exploration-of-edge-computing-considerations">Edge Compuing 고려 사항에 대한 심층 탐구</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exploring-characteristics">특징 및 사용 사례 살펴보기</a><ul>
+<li><a class="reference internal" href="#use-cases">사용 사례</a><ul>
+<li><a class="reference internal" href="#data-collection-and-analytics">데이터 수집과 분석</a></li>
+<li><a class="reference internal" href="#security">보안</a></li>
+<li><a class="reference internal" href="#compliance-requirements">규정 준수 요구 사항</a></li>
+<li><a class="reference internal" href="#network-function-virtualization-nfv">네트워크 기능 가상화 (NFV)</a></li>
+<li><a class="reference internal" href="#real-time">실시간</a></li>
+<li><a class="reference internal" href="#immersive">Immersive</a></li>
+<li><a class="reference internal" href="#network-efficiency">네트워크 효율성</a></li>
+<li><a class="reference internal" href="#self-contained-and-autonomous-site-operations">독립적이고 자율적인 사이트 운영</a></li>
+<li><a class="reference internal" href="#privacy">프라이버시</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scenarios">시나리오</a></li>
+<li><a class="reference internal" href="#challenges">도전</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion-and-call-to-action">결론과 행동 요청</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, OpenStack Foundation.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

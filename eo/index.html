@@ -1,0 +1,363 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="eo">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Nubranda Komputado: Trans la datumejo &#8212; edge-computing  dokumentaro</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cloud-edge-computing-beyond-the-data-center">
+<h1>Nubranda Komputado: Trans la datumejo<a class="headerlink" href="#cloud-edge-computing-beyond-the-data-center" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>ENKONDUKO<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Dum pli ol jardeko, centralizita nubkomputiko estis konsiderita norma IT livera platformo. Kvankam nuba komputiko estas ĉiea, aperanta postuloj kaj laborŝarĝoj estas komencanta malkovri ties limoj. Kun ties forta datumcentro centra vido, kie komputaj kaj memorilaj rimedoj estas relative ofta kaj centralizita, malgranda aŭ neniu penso estis iam ajn donita al la plibonigo de la subtenanta virtuala maŝinmonitoro kaj administrada platforma piedsigno. Nur kelkaj nubo programistoj grave konsideris la postulojn bezonita subteni rimedo-limigitajn nodojn atingebla nur super nefidinda aŭ kapacito-limhava retaj konektoj, aŭ pensis pri la bezonoj de aplikoj kiu postulas tre alta reta kapacito, malalte atendotempo aŭ vastan komputan kapaciton trans multaj ejoj.</p>
+<p>Novaj aplikoj, servoj kaj laborŝarĝoj ĉiufoje pli postulas malsaman specon de arkitekturo, unu tio kiu estas konstruita por rekte subteni distribuitan infrastrukturon. Novaj postuloj por havebleco kaj nuba kapablo ĉe izolitaj ejoj estas bezonita por subteni ambaŭ hodiaŭajn postulojn (retbutika datumanalitiko, retaj servoj) kaj morgaŭ-a novaĵoj (lertaj urboj, AR/VR). La matureco, fidindeco, fleksebleco kaj simpleco de nubo nun devas esti etendita trans multoblaj ejoj kaj retoj por subteni evoluantajn postulojn.</p>
+<p>Ĵus firmaoj komencis apliki la simpligitan administron kaj flekseblecon de nubkomputanta arkitekturoj al distribuita infrastrukturoj kiu etendas trans multoblaj ejoj kaj retoj. Organizoj havas aperanta bezonon preni nubajn kapablojn trans WAN-aj retoj kaj en ĉiufoje pli malgrandaj deplojoj ekstere ĉe la reta rando. Kvankam ĉi tiu alproksimiĝo estas ankorau je ties fruaj tagoj, ĝi estas fariĝanta klara ke multaj aperanta uzajn kazojn kaj scenarojn profitigus de distribuita arkitekturoj.</p>
+<p>En ĉi tiu papero, ni esploras ĉi tiu aperantan bezonon. Ĝi estis vokita multajn nomojn: distribuita nubon, nebula komputiko, 4a generacia datumaj centroj, sed por la celoj de ĉi tiu dokumento, ni restas kun ofta, facile komprenita termina—nubranda komputiko.</p>
+<p>La Edge Computing Group vidas ĉi tiun evoluon de nuba komputiko kiel tre ekscita, kvankam ni rekonas ke kapableco de OpenStack subteni nubrandan komputikon estas je ties fruaj tagoj. Bazita sur komenca komunuma intereso esprimita ĉe la OpenStack Pintokunveno Boston, du-taga laborejo estis tenita en septembro 2017 kiu kunvenigis super 200 uzantoj kaj programistoj komenci la malfacilan laboron difini esencajn uzkazojn kaj konsideranta la ilojn kaj arkitekturojn bezonita subteni ilin. Pruvo de konceptoj estis farita kaj la komunumo havas kelkajn fruajn deplojojn realisita. La Edge Computing Group nun transprenis la defio priskribi fundamentajn postulojn de plene praktika nubranda komputanta infrastrukturon.</p>
+<p>En ĉi tiu dokumento, ni celas plenumi plurajn gravajn taskojn:</p>
+<ol class="arabic simple">
+<li>Kultivi konversacion ĉirkaŭ nubranda komputiko, inkluzivanta kelkajn bazajn difinojn, stimulanta intereson kaj engaĝiĝon de la malferma fonto komunumo.</li>
+<li>Gvidi ambaŭ la pli larĝa malferma fonto kaj OpenStack komunumoj en evoluiganta ilojn kaj normojn bezonita por larĝa adopto.</li>
+<li>Esplori kiom nunaj iloj, normoj kaj arkitekturoj devus ŝanĝi por akomodi tion ĉi distribuitan nuban modelon.</li>
+</ol>
+<p>Multe da laboro devas esti farita por atingi niajn celojn kaj ni bonvenigas kaj instigas la tutan malferman fontkomunumon aliĝi en ambaŭ la peno kaj la ŝanco krei aŭ adapti ilojn por atingi la novajn postulojn de nubranda komputiko.</p>
+</div>
+<div class="section" id="what-is-cloud-edge-computing">
+<h2>KIO ESTAS CLOUD EDGE COMPUTING -au NUBRANDA KOMPUTADO ?<a class="headerlink" href="#what-is-cloud-edge-computing" title="Permalink to this headline">¶</a></h2>
+<p>Valoras reliefiganta ke multaj koincidanta kaj foje konfliktanta difinojn de randa komputiko ekzistas—randan komputikon signifas multajn aferojn al multaj homoj. Sed por niaj celoj, la plej matura vido de randa komputiko estas ke ĝi estas proponanta aplikajo programistojn kaj servajn provizantojn nubkomputanta kapablojn, tiel kiel IT serva medio ĉe la rando de reto.</p>
+<p>La celo estas liveri komputajo, memorilajo kaj retkapacito multe pli proksima al datumaj kontribuaĵoj kaj/aŭ finaj uzantoj. Randkomputanta medio estas karakterizita de potenciale alta atendotempo inter ĉiuj la ejoj kaj malalta kaj nefidinda kapacito—apud aparta servo livero kaj aplikajo funkcia eblecoj kiu ne povas esti renkontita kun komunaĵo de centralizitaj nubo rimedoj en fora datumcentroj. Per movado de kelkaj aŭ ĉiuj de la datumtraktadaj funkcioj pli proksiman al la fina uzanto aŭ datuma kolekto punkto, nuba rando komputiko povas mildigi la efikojn de fore distribuita ejojn per minimumiganta la efikon de atendotempo sur la aplikoj.</p>
+<p>Randa komputado unue aperis dum virtualigo de retaj servoj super WAN retoj, prenanta paŝon for de la datuma centro. La komencaj uzokazoj estis veturita de deziro ekspluati platformon kiu liveris la flekseblecon kaj simplajn ilojn al kiuj nubo komputanta uzantojn jam fariĝis kutimita.</p>
+<p>Kiel novaj randkomputanta kapablojn aperas, ni vidas ŝanĝanta paradigmom por komputado—unu kiu estas ne pli longa nepre ligita de la bezono konstrui centralizitajn datumajn centrojn. Male, por certaj aplikoj, nubranda komputiko estas prenanta la lecionojn de virtualizado kaj nuba komputiko kaj kreanta la kapablon havi potenciale miloj da grandege distribuitajn nodojn kiu povas esti aplikita al diversaj uzo kazoj, kiel industria IoT aŭ eĉ for-ĵetitaj monitoranta retojn por spuradi realtempe akva rimedo uzado super miloj aŭ milionoj da lokoj.</p>
+<p>Multaj proprietaj kaj malferma fonto rando komputanta kapablojn jam ekzistas sen fidanta sur distribuita nubo—kelkaj vendistoj plu-gvidas al tio ĉi kiel “aparata rando.” Eroj de ĉi tiu alproksimiĝo inkluzivas elementojn kiel IoT enirejoj aŭ NFV-aj aparatoj. Sed ĉiufoje pli, aplikoj bezonas la eblecojn de nubo ĉe la rando, kvankam la iloj kaj arkitekturoj bezonita por konstrui distribuitajn randajn infrastrukturojn estas ankoraŭ en ilia infanaĝo. Nia vido estas ke la merkato daŭros postuli pli bonajn kapablojn por nuba rando komputiko.</p>
+<p>Rando komputanta kapablojn inkluzivas, sed ne estas limigita al:</p>
+<ul class="simple">
+<li>Konsekvenca funkciado paradigmo trans diversaj infrastrukturoj.</li>
+<li>La kapableco elfari en grandege distribuita (pensi milojn de tutmondaj lokoj) medio.</li>
+<li>La bezono liveri retajn servojn al klientoj troviĝita ĉe tutmonde distribuita izolitajn lokojn.</li>
+<li>Aplikajo integrigon, orkestradon kaj servo-livero postuloj.</li>
+<li>Aparataraj limoj kaj kostaj limoj.</li>
+<li>Limhava aŭ intermita retaj konektoj.</li>
+<li>Metodoj por trakti aplikojn kun strikta malalta atendotempo postuloj (AR/VR, voĉo kaj tiel plu).</li>
+<li>‘Geofencing’ kaj postuloj por teni senteman privatan datumon loka.</li>
+</ul>
+<div class="section" id="a-deeper-exploration-of-edge-computing-considerations">
+<h3>PLI PROFUNDA ESPLORADO de RANDA KOMPUTANTA KONSIDEROJN<a class="headerlink" href="#a-deeper-exploration-of-edge-computing-considerations" title="Permalink to this headline">¶</a></h3>
+<p>La “rando” en randa komputiko plu-gvidas al la ekstero de administracia domajno, tiel malproksima kiel ebla al discretaj datumaj fontoj aŭ finaj uzantoj. Ĉi tiu koncepto aplikas al telekom retoj, al grandaj entreprenoj kun distribuitajn punktojn de ĉeesto kiel podetala aŭ al aliaj aplikoj, aparte en la kunteksto de IoT.</p>
+<a class="reference internal image-reference" href="_images/1-edge-computing.png"><img alt="_images/1-edge-computing.png" src="_images/1-edge-computing.png" style="width: 100%;" /></a>
+<p>Unu el la karakterizaĵoj de randa komputiko estas ke la apliko estas forte asociita kun la randa loko. Por telekoms, “la rando” plu-gvidus al punkto proksime al la fina uzanto sed regadita de la provizanto, potenciale havanta kelkajn elementojn de laborŝarĝo kuradi sur finuzanto aparatoj. Por grandaj entreprenoj, “la rando” estas la punkto kie la apliko, servo aŭ laborŝarĝo estas uzita (ekz. podetala vendejo aŭ fabriko). Por la celoj de ĉi tiu difino, la rando ne estas fina aparatilo kun ekstreme limigita kapaciton por subteni eĉ minimuma nuba arkitekturo, kiel IoT aŭ sentila aparato. Tio ĉi estas grava konsidero, ĉar multaj diskutoj de randa komputiko ne faras tiun distingon.</p>
+<p>Randa komputiko estas simila al datuma centro komputiko en tio:</p>
+<ul class="simple">
+<li>Ĝi inkluzivas komputa, memorila kaj interkonektanta rimedojn.</li>
+<li>Ties rimedoj povas esti kunhavigita de multaj uzantoj kaj multaj aplikoj.</li>
+<li>Ĝi profitigas de virtualigo kaj abstrakto de la risurco komunaĵo.</li>
+<li>Ĝi profitigas de la kapableco ekspluati komercaĵan aparataron.</li>
+<li>Ĝi uzas APIs por subteni kunfunkcipovo.</li>
+</ul>
+<p>Randa komputiko malsamas de komputado en grandaj datumo centroj en tio:</p>
+<ul class="simple">
+<li>Randaj ejoj estas tiel proksime kiel ebla al la finuzantojn. Ili plibonigas la sperton super alta atendotempo kaj nefidindaj konektoj.</li>
+<li>Povus postuli specialigita aparataron, kiel GPU/FPGA platformoj por AR/VR funkcio.</li>
+<li>Rando povas skali al grandaj nombroj de ejoj, distribuita en distingaj lokoj.</li>
+<li>La loko de rando ejo kaj la identeco de la aliraj ligoj ĝi akceptas estas grava. Apliko kiu devas kuri proksiman al ties uzantoj, bezonas esti en la ĝusta parto de la rando. Estas normala ke la aplikaĵa loko gravas en randa komputiko.</li>
+<li>La tuta komunaĵo de ejoj povas esti konsiderita dinamika. Pro ilia fizika apartigo, randaj ejoj estas, en kelkaj kazoj, konektita al ĉiu alia kaj la kerno kun WAN konektoj. Randaj ejoj aliĝos kaj forlasas la komunaĵo de infrastrukturo dum kelka tempo.</li>
+<li>Randaj ejoj estas izolita kaj potenciale senpilota kaj sekve devas esti administrita defore. Iloj devas subteni intermitan retaliron al la ejo.</li>
+<li>Rando subtenas grandajn diferencojn en eja grandeco kaj skalo, de datuma centro skalo malsupren al ununura aparato.</li>
+<li>Randaj ejoj povas esti risurco limigita; aldoni kapaciton al ekzistanta ejo estas restriktita pro spaco aŭ elektraj postuloj.</li>
+<li>Mult-tenanteco je masiva skalo estas postulita por kelkaj de la uzokazoj.</li>
+<li>Izoleco de randa komputiko de datuma centro nuboj povas esti postulita por certigi ke kompromisoj en la “ekstera nubo” domajno ne povas efiki servoj.</li>
+</ul>
+<p>La koncepto de randa komputiko devas kovri ambaŭ la randa ejo (ekz. la komputa, reta kaj memortenada infrastrukturo), sed ankaŭ la aplikoj (laborŝarĝo) kiuj kuras sur ĝi. Valoras noti ke ajnaj aplikoj en rando komputanta medion potenciale povus ekspluati iun ajn aŭ ĉiujn de la kapabloj provizita de nubo—komputa, blokmemora, objektmemora, virtuala interkonekto, aparatoj aŭ konteneroj.</p>
+<p>La esencaj trajtoj kiu difinas kaj apartigas rando komputiko de nuba komputiko estas:</p>
+<ul class="simple">
+<li>La kapableco subteni dinamikan komunaĵon de oblaj potenciale vaste distribuitaj ejojn,</li>
+<li>potenciale nefidinda retaj konektoj, kaj</li>
+<li>La probableco de malfacila-por-solvi rimedo limoj ĉe ejoj trans la reto.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="exploring-characteristics">
+<h2>ESPLORI KARAKTERIZAĴON KAJ UZO KAZOJ<a class="headerlink" href="#exploring-characteristics" title="Permalink to this headline">¶</a></h2>
+<p>Do kio ni scias ĝis nun pri rando komputanta karakterizaĵojn, uzo kazojn kaj scenarojn?</p>
+<p>La difinanta bezonon kiu veturas nubo rando komputikon estas la bezono por servo livero esti pli proksima al uzantoj aŭ fin-punktaj datumo fontoj. Rando komputantaj mediojn laboros kune kun kerna kapacito, sed kun la celo liveri plibonigitan finan uzanto sperton sen metanta postulemajn postulojn sur konektebleco al la kerno. Plibonigoj rezultas de:</p>
+<ol class="arabic simple">
+<li>Redukti atendotempon: La atendotempo al la fina uzanto povus esti pli malalta ol ĝi estus se la komputilo estis pli fora—faranta, ekzemple, respondemaj foraj labortabloj ebla, aŭ sukcesa AR, aŭ pli bona videoludado.</li>
+<li>Mildigi kapacito limoj: La kapableco movi laborŝarĝojn pli proksima al la finaj uzantoj aŭ datumo kolekto punktoj reduktas la efikon de limhava kapableco ĉe ejo. Tio ĉi estas precipe utila se la servo sur la randa nodo reduktas la bezonon elsendi grandajn kvantojn de datumo al la kerna por pretigo, kiel estas ofte la kazo kun IoT kaj NFV workloads. Datuma redukto kaj loka pretigo povas esti tradukita en ambaŭ pli respondemaj aplikoj kaj reduktas la koston transporti terabajtoj de datumo super longaj distancoj.</li>
+</ol>
+<p>Sed estas kompromisoj. Por liveri randan komputikon, estas necesa vaste pliigi la nombron de deplojoj. Tio ĉi starigas gravan defion al vasta rando deplojoj. Se administranta ununuran nubon prenas teamon de dek, kiel povas organizon varti centojn aŭ eĉ milojn de malgrandaj nuboj? Kelkaj postuloj inkluzivas:</p>
+<ol class="arabic simple">
+<li>Normigado kaj infrastruktura konsekvenco estas devita. Ĉiu loko devas esti simila; konata kvanto.</li>
+<li>Mastrumebleco devas esti aŭtomatigita; deplojo, anstataŭaĵo kaj ajnaj reakireblaj malsukcesoj devus esti simpla kaj rekta.</li>
+<li>Simplaj, kostefikaj planoj devas esti submetita kiam aparato malfunkcias.</li>
+<li>Loke misfaro-tolerantaj desegnoj povus esti grava, precipe en medioj kiu estas izolita aŭ neatingebla—nulo tuŝa infrastrukturo estas dezirinda. Tio ĉi estas demando kiu ekvilibrigas la koston de aĉetado kaj operacii redundan aparataron kontraŭ la kosto de senkurentiĝoj kaj krizaj riparoj. Konsideroj inkluzivas:<ol class="loweralpha">
+<li>Ĉu ĉi tiuj lokoj devas esti mem-sufiĉa?</li>
+<li>Se loko havas malfunkcion, neniu estas iranta tien ripari ĝin kaj lokaj rezervaĵoj estas neverŝajna.</li>
+<li>Ĉu ĝi devas toleri malfunkcion? Kaj se ĝi faras, kiom longe ĝi povas daŭri antaŭ ol iu estos havebla ripari ĝin—du horoj, semajno, monato?</li>
+</ol>
+</li>
+<li>Funkciteneblo devas esti simpla—nespertaj teknikistoj elfaras manajn riparojn kaj anstataŭaĵojn, dum kvalifikita fora administranto re-instalas aŭ daŭrigas softvaron.</li>
+<li>Fizikaj desegnoj povus bezoni kompletan rekonsideron. Plejparto de rando komputanta mediojn ne estos ideala—limita potenco, malpuraĵo, humideco kaj vibro devas esti konsiderita.</li>
+</ol>
+<div class="section" id="use-cases">
+<h3>UZO KAZOJ<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h3>
+<p>Estas verŝajne dekduoj de vojoj karakterizi uzo kazojn kaj ĉi tiu papero estas tro mallonga provizi ĝisfundan liston. Sed ĉi tie estas kelkaj ekzemploj helpi klarigi pensadon kaj prilumi ŝancojn por kunlaboro.</p>
+<p>Kvar gravaj kategorioj de laborŝarĝo postuloj kiuj profitas de distribuita arkitekturon estas analitiko, observo, sekureco kaj NFV.</p>
+<div class="section" id="data-collection-and-analytics">
+<h4>Datuma Kolekto kaj Analitiko<a class="headerlink" href="#data-collection-and-analytics" title="Permalink to this headline">¶</a></h4>
+<p>IoT, kie datumoj estas ofte kolektita de granda reto de mikroejoj, estas ekzemplo de apliko kiu profitas de la rando komputanta modelo. Sendanta amasojn de datumo super ofte limigita retajn konektojn al analitika funkciigilo troviĝita en centralizita datumo centro estas malutila; ĝi ne povas esti respondema sufiĉa, povus kontribui al troa atendotempo kaj malŝparas valoran kapaciton. Pro tio ke randaj aparatoj ankaŭ povas produkti terabajtoj da datumo, prenanta la analizilo pli proksima al la fonto de la datumo sur la rando povas esti pli kostefika per analizanta datumon proksime al la fonto kaj nur sendanta malgrandajn arojn de densigita informon reen al la centralizitaj sistemoj. Estas kompromiso ĉi tie—ekvilibriganta la koston transporti datumon al la kerno kontraŭ perdanta kelkan informon.</p>
+</div>
+<div class="section" id="security">
+<h4>Sekureco<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h4>
+<p>Bedaŭrinde, kiel randaj aparatoj multiĝas––inkluzivanta moveblajn manaĵojn kaj IoT sentilojn––nova atako vektoroj estas aperanta kiuj utiligas la dismultiĝon de finpunktoj. Randa komputiko proponas la kapablecon movi sekurecajn elementojn pli proksima al la devenanta fonto de atako, ebligas pli altan elfaron de sekurecaj aplikoj kaj pliigas la nombron de tavoloj kiuj helpas defendi la kernon kontraŭ breĉoj kaj risko.</p>
+</div>
+<div class="section" id="compliance-requirements">
+<h4>Konformiĝo Postuloj<a class="headerlink" href="#compliance-requirements" title="Permalink to this headline">¶</a></h4>
+<p>Konformiĝo kovras larĝan gamon de postuloj, varianta de geobarikadi, datuma suvereneco kaj kopirajta efikigado. Restrikti aliron al datumo bazita sur geografio kaj politikaj limoj, limiganta datumajn riveretojn dependanta sur kopirajtaj limoj kaj entenanta datumon en lokoj kun specifaj reguligoj estas ĉiuj havebla kaj efektivigebla kun rando komputanta infrastrukturon.</p>
+</div>
+<div class="section" id="network-function-virtualization-nfv">
+<h4>Reto Funkcio Virtualigo (NFV)<a class="headerlink" href="#network-function-virtualization-nfv" title="Permalink to this headline">¶</a></h4>
+<p>Reto Funkcio Virtualigo (NFV) estas ĉe ties koro la kvintesenca rando komputanta aplikon ĉar ĝi provizas infrastrukturan funkcion. Telekom operaciantoj estas rigardanta transformi iliajn servajn liverajn modelojn per operacii virtualaj reto funkcioj kiel parto de, aŭ tavolita supre de, rando komputanta infrastrukturon. Maksimumigi efikecon kaj minimumigi kostojn/kompleksecon, kuranta NFV sur rando komputanta infrastrukturajn faras senton.</p>
+</div>
+<div class="section" id="real-time">
+<h4>Real-tempo<a class="headerlink" href="#real-time" title="Permalink to this headline">¶</a></h4>
+<p>Real-tempaj aplikoj, kiel AR/VR, konektitaj aŭtoj, telemedicino, palpebla interreto, Industrio 4.0 kaj lertaj urboj, estas nekapabla toleri pli ol kelkaj milisekundoj da atentotempo kaj povas esti ekstreme sentema al jitter aŭ atentotempo vario. Kiel ekzemplo, konektitaj aŭtoj postulos malaltan atentotempon kaj altan kapaciton kaj dependas sur komputado kaj kontenta kaŝmemori proksime al la uzanto, faranta randan kapaciton neceso. En multaj scenaroj, precipe kie ferma-maŝa aŭtomacio estas uzita por daŭrigi altan haveblecon, respondaj tempoj en dekoj da milisekundoj estas devita kaj ne povas esti renkontita sen rando komputanta infrastrukturo.</p>
+</div>
+<div class="section" id="immersive">
+<h4>Ampleksa<a class="headerlink" href="#immersive" title="Permalink to this headline">¶</a></h4>
+<p>Randa komputiko vastigas kapacitaj kapabloj, liberiganta la potencialon de novaj ampleksaj aplikoj. Kelkaj de ĉi tiuj inkluzivas AR/VR, 4K video kaj 360° figurado por vertikaloj kiel kuracado. Kaŝmemori kaj optimumi enhavon ĉe la rando estas jam fariĝanta neceso ekde protokoloj kiel TCP ne respondas bone al subitaj ŝanĝoj en radia reto trafiko. Rando komputanta infrastrukturon, ligita en real-tempa aliro al radia/reta informo povas redukti interruptojn kaj prokrastojn en video de ĝis 20% dum pintaj spektado horoj kaj ankaŭ povas varii la video fluan bitrapidon bazita sur radiaj kondiĉoj.</p>
+</div>
+<div class="section" id="network-efficiency">
+<h4>Reta Efiko<a class="headerlink" href="#network-efficiency" title="Permalink to this headline">¶</a></h4>
+<p>Multaj aplikoj ne estas sentemaj al la respondotempo kaj ne postulas grandajn kvantojn de proksima kalkulado aŭ stokado, do ili povus teorie kuri en centra nubo, sed la larĝaj kapacitaj bezonoj kaj / aŭ komputilaj postuloj ankoraŭ povas randan komputadon pli efika. Iuj de ĉi tiuj laborŝarĝoj estas komunaj hodiaŭ, inkluzive de videoludado kaj IoT pordegoj, dum aliaj, inkluzive de rekono de vizaĝo kaj rekono de vehicla numerplato, estas emerĝaj kapabloj. Kun multaj el ĉi tiuj, la rando-komputila infrastrukturo ne nur reduktas la larĝajn kapacitajn bandojn, sed ankaŭ povas provizi platformon por funkcioj, kiuj ebligas la valoron de la apliko—ekzemple, video observado per movo ekkono kaj minaco-rekono. En multaj el ĉi tiuj aplikoj, 90% de la datumoj estas rutinaj kaj malgravaj, do sendante ĝin al centra nubo estas malpermese multekosta kaj disipiĝo de ofte malabunda reta kapacito. Estas pli sencoriĉa ordigi la datumojn ĉe la rando por anomalioj kaj ŝanĝoj, kaj nur raporti pri la agrablaj datumoj.</p>
+</div>
+<div class="section" id="self-contained-and-autonomous-site-operations">
+<h4>Aŭtomataj kaj aŭtonomaj datumejaj operacioj<a class="headerlink" href="#self-contained-and-autonomous-site-operations" title="Permalink to this headline">¶</a></h4>
+<p>Multaj medioj, eĉ hodiaŭ, havas limigitan nekredeblan aŭ neantaŭvideblan konekteblecon. Ĉi tiuj povus inkluzivi transportadon (aviadilojn, busojn, ŝipojn), minindustriajn operaciojn (oleo-platformojn, tuberojn, minojn), elektropotencan infrastrukturon (ventojn, sunajn potencojn), kaj eĉ mediojn, kiuj kutime havus bonan konektecon, kiel vendejoj. Edge-komputado nete subtenas tiajn mediojn per permesado de ejoj resti duon-aŭtonomaj kaj funkciaj kiam necesas aŭ kiam la reto-konektebleco ne estas disponebla. La plej bona ekzemplo de ĉi tiu aliro estas la neceso de komercaj lokoj por subteni siajn ssistemojn de punkto de vendado (POS), eĉ kiam dumptempe ne ekzistas reta konektebleco.</p>
+</div>
+<div class="section" id="privacy">
+<h4>Privateco<a class="headerlink" href="#privacy" title="Permalink to this headline">¶</a></h4>
+<p>Entreprenoj povas havi bezonojn por randa komputika kapablo dependa de laborŝarĝo, konektecaj limitoj kaj privateco. Ekzemple, kuracaj aplikoj, kiuj bezonas anonimigi personajn sanajn informojn (PHI) antaŭ ol sendi ĝin al la nubo, povus fari ĉi tion uzante randkomputikan infrastrukturon.</p>
+<p>Alia maniero por rigardi postulojn, kiuj profitigus el nubranda komputado, estas laŭ la tipo de kompanio, kiu disponigos ilin. Operaciaj aplikoj estas laborŝarĝoj metitaj en la randkomputika infrastrukturo kiu estas konstruita kaj administrita de kompanioj de operaculoj– telekomunikadaj entreprenoj, ekzemple. Tria-partiaj aplikoj estas konstruitaj de organizoj por kuri sur ekzistanta randa infrastrukturo, por plibonigi randajn komputilajn infrastrukturojn de aliaj. Ĝi valoras rimarki, ke ajnaj aplikoj povus plibonigi iujn aŭ ĉiujn kapablojn provizitajn per nubo-komputilo, blok stokado, objekto-stokado, virtualaj retoj, aparataro, aŭ konteneroj.</p>
+</div>
+</div>
+<div class="section" id="scenarios">
+<h3>SCENAROJ<a class="headerlink" href="#scenarios" title="Permalink to this headline">¶</a></h3>
+<p>La baza trajto de la randa komputika paradigmo estas, ke la infrastrukturo situas pli proksima al la finuzanto, ke la skalo de ejoj distribitaj estas alta kaj ke la randaj nodoj estas konektitaj per WAN retoj. Ekzamenante kelkajn scenarojn en plua profundo helpas nin taksi aktualajn kapablojn, kiuj mapas al la uzkazon, kaj ankaŭ reliefigas malfortojn kaj ŝancojn por plibonigo.</p>
+<ol class="arabic">
+<li><p class="first">Negoco/financo/remota loko “nubo en skatolo”: Randokomputila infrastrukturo kiu subtenas serion da aplikoj adaptitaj al la specifa firmao aŭ industrio vertikala. Ofte uzata de la entrepreno, komputila infrastrukturo, finfine kunigita en distribuita infrastrukturo, por redukti la aparataron, normigi la disponigojn en multaj lokoj, liveri pli grandan flekseblecon por anstataŭigi aplikaĵojn lokigitajn ĉe la rando (kaj havi la saman aplikon kurante uniforme en ĉiuj nodoj sendepende de HW), plifortigi reziston, kaj prizorgi zorgojn pri intermitaj WAN-konektecojn. Kaŝmemori enhavon aŭ havigi komputilon, stokadon kaj retojn por memstaraj aplikoj estas evidentaj uzoj por randa komputado en agordoj kun limigita konektebleco.</p>
+</li>
+<li><p class="first">Mobila konektebleco: Mobilaj/sendrataj retoj verŝajne estos komuna ekologia elemento por nubrando-komputado, ĉar mobilaj retoj daŭre restos karakterizita per limigita kaj neantaŭvidebla bandkapacito, almenaŭ ĝis 5G fariĝas vaste disponebla. Aplikoj kiel plibonigita realeco por remota riparo kaj telemedicino, IoT-aparatoj por kaptado de utilecaj (akvo, gaso, elektra, instaladministrado) datumoj, inventaro, provizoĉenaj kaj transportaj solvoj, inteligentaj urboj, inteligentaj vojoj kaj deforaj sekurecaj aplikoj ĉiuj dependos de la mobila reto je pli grandaj aŭ malpliaj gradoj. Ĉiuj profitos de la kapablo de randa komputado por movi ŝarĝojn de laboro pli proksima al la finuzanto.</p>
+<a class="reference internal image-reference" href="_images/2-mobile-connectivity.png"><img alt="_images/2-mobile-connectivity.png" src="_images/2-mobile-connectivity.png" style="width: 100%;" /></a>
+</li>
+<li><p class="first">Reto-kiel-Servo (NaaS): Devenante de la bezono liveri identan sperton de retservo al aplikajo en radikale malsamaj medioj, la uzkazo de NaaS postulas kaj malgrandan spuron de sia platformo distribuita ĉe la randoj kaj fortaj centralizitaj mastrumaj iloj, kiuj transiras nefidindajn aŭ limigitajn retajn WAN-konektojn por subteni la servojn eksteren. La ĉefaj trajtoj de ĉi tiu scenaro estas: malgranda aparataro, movado (ŝanĝante retajn konektojn) kaj konstante ŝanĝantajn laborŝarĝojn, hibridaj lokoj de datumoj kaj aplikoj. Ĉi tiu estas unu el la kazoj, kiuj bezonas infrastrukturon por subteni mikronodojn–malgrandajn dozojn de komputado en ne-tradiciaj pakoj (ne ĉiu 19in rako en malvarmigita datumcentro). NaaS postulos subtenon por miloj aŭ dekoj da miloj da nodoj ĉe la rando kaj devas subteni maŝa reto kaj / aŭ hierarkiajn arkitekturojn tiel kiel laŭpetajn ejojn, kiuj povus starti laŭ neceseco kaj halti kiam ili estas preta. API kaj GUI devas ŝanĝi por tio, ke grandaj numeroj de komputilaj nodoj havas malsamajn lokojn anstataŭ esti ĉeestantaj en la sama datumcentro.</p>
+<a class="reference internal image-reference" href="_images/3-network-as-a-service.png"><img alt="_images/3-network-as-a-service.png" src="_images/3-network-as-a-service.png" style="width: 100%;" /></a>
+</li>
+<li><p class="first">Universala Klienta Loka Ekipaĵo (uCPE): Ĉi tiu scenaro, kiu jam estas disponigita hodiaŭ, postulas subtenon por aplikajo-skalitaj aparataraj ampleksojn, kaj estas karakterizita per limigitaj retaj konektoj kun ĝenerale stabilaj laborŝarĝoj, kiuj bezonas altan disponon. Ĝi ankaŭ postulas metodon de subtenado de hibridaj lokoj de datumoj kaj aplikoj trans centoj aŭ miloj da nodoj kaj skalado de ekzistantaj uCPE-disponigoj estos emerĝa postulo.</p>
+<p>Ĉi tio estas aparte aplikebla al la NFV-aplikoj, kie malsamaj ejoj eble bezonos malsamajn servo-ĉenitajn aplikajojn, aŭ ejoj kun alia aro de postulataj aplikoj, kiuj ankoraŭ bezonas labori kune. Maŝa reto aŭ hierarkiaj arkitekturoj devus esti subtenataj kun lokigita kapacito kaj la bezono stoki kaj antaŭenigi datumprogramadon pro intermitaj retaj rilatoj. Mem-resanigo kaj memregado kombinita kun la kapablo administri defore la nodon estas deviga.</p>
+</li>
+<li><p class="first">Satelito ebligita komunikado (SATCOM): Ĉi tiu scenaro estas karakterizita de multaj kapablaj terminalojn, ofte distribuitajn al la plej malproksimaj kaj severaj kondiĉoj. Samtempe, havas sencon uzi ĉi tiujn distribuitajn platformojn por gastigi servojn, precipe konsiderante la ekstreme altan atentotempon, limigita bandkapacito kaj la kosto de satelita komunikado. Specifaj ekzemploj de tiaj uzkazoj povus inkludi ŝipojn (de fiŝkaptistoj al petrolŝipoj), aviadiloj, oleo-platformoj, minindustriaj operacioj aŭ militagrada infrastrukturo.</p>
+<a class="reference internal image-reference" href="_images/4-satellite-enabled-communication.png"><img alt="_images/4-satellite-enabled-communication.png" src="_images/4-satellite-enabled-communication.png" style="width: 100%;" /></a>
+</li>
+</ol>
+</div>
+<div class="section" id="challenges">
+<h3>PROVOKOJ<a class="headerlink" href="#challenges" title="Permalink to this headline">¶</a></h3>
+<p>Kvankam ekzistas multaj ekzemploj de randaj disponigoj jam progresantaj ĉirkaŭ la mondo, ampleksa adopto postulos novajn modojn de pensado por solvi emerĝajn kaj jam ekzistantajn defiojn kaj limojn.</p>
+<p>Ni establis ke la randkomputila platformo devas esti, per dezajno, multe pli panetolera kaj robusta ol tradicia datumocentra centra nubo, kaj en la terminoj de la aparataro same kiel de la platformaj servoj, kiuj subtenas la aplikaĵan vivociklo. Ni ne povas supozi, ke tiaj uzkazoj havos la funkcitenado kaj subtenajn instalaĵojn, kiujn la norma datumbaza infrastrukturo havas. Zero-tuŝo provizado, aŭtomatigo kaj aŭtonoma orkestado en ĉiuj infrastrukturoj kaj platformoj estas fundamentaj postuloj en ĉi tiuj scenaroj.</p>
+<p>Sed ekzistas aliaj defioj kiujn oni devas konsideri.</p>
+<p>Por unu, rando-rimedaj administrantaj sistemoj devus provizi aron de altnivelaj mekanismoj, kies asembleo rezultigas en sistemon kapabla funkcii kaj uzi geo-distribuitan IaaS-infrastrukturon dependanta de WAN-interkonektoj. Alivorte, la defio estas revizii (kaj plilongigi kiam bezonas) IaaS-koraj servoj por trakti antaŭmenciitajn rando specifojn – reto-rekonektoj/bandkapacitoj, limigitaj kapabloj laŭ kompudado kaj stokado, senhomaj disponigoj, kaj tiel plu.</p>
+<p>Iuj antaŭvideblaj bezonoj inkluzivas:</p>
+<ul class="simple">
+<li>Virtuala maŝino/kontenero/aparata mastrumilo komisiita pri administrado de maŝino/kontenero-vivciklo (agordo, programado, disponigo, prokrasti/rekomenci, kaj haltigo).</li>
+<li>Mastrumilo de bildoj komisiita pri ŝablonaj dosieroj (ankau konata kiel virtualaj maŝinoj/konteneraj bildoj)</li>
+<li>Mastrumilo de reto komisiita pri provizi konektecon al la infrastrukturo: virtualaj retoj kaj ekstera aliro por uzantoj.</li>
+<li>Mastrumilo de stokado, provizanta stokadajn servojn al randaj aplikoj.</li>
+<li>Administraj iloj, proviziante uzanto interfacojn por funkcii kaj uzi la dissemitan infrastrukturon.</li>
+</ul>
+<p>Ĉi tiuj bezonoj estas relative evidentaj kaj verŝajne estus atingebla per plibonigo kaj adaptado de ekzistantaj projektoj. Sed aliaj bezonoj por randa komputiko estas pli malfacilaj. Ĉi tiuj inkluzivas, sed ne estas limigitaj al:</p>
+<ul class="simple">
+<li>Pritrakti stokadan atendotempon super WAN-konektoj.</li>
+<li>Plifortigita sekureco ĉe la rando-viglado de la fizika kaj aplikaĵa integreco de ĉiu ejo, kun la kapablo aŭtonome ebligi korektajn agojn kiam necese.</li>
+<li>Monitorado de rimedo-uzado trans ĉiuj nodoj samtempe.</li>
+<li>Orkestraj iloj, kiuj administras kaj kunordigas multajn randajn lokojn kaj laborŝarĝojn, eble direktanta al monitoranta stirpanelo aŭ “mem-organiza rando”.</li>
+<li>Orkestrado de federacio de rando-platformoj (aŭ nubo-de-nuboj) devas esti esplorita kaj enmetita al la IaaS-koraj servoj.<ul>
+<li>Aŭtomataj randaj komisionaj/malkomisionaj operacioj, inkluzive de komenca disponigo de programoj kaj ĝisdatigoj de la rimedo mastruma sistemaj elementoj.</li>
+<li>Aŭtomatigitaj datumo kaj laborŝarĝaj lokado – ŝarĝodistribuado trans geografie distribuitaj aparatoj.</li>
+</ul>
+</li>
+<li>Kelkaj formoj de sinkronigo de abstrakta ŝtata disvastigo devus esti bezonataj ĉe la “kerno” de la infrastrukturo por trakti intermitajn retajn ligojn.</li>
+<li>Novaj manieroj por trakti problemojn pri reta dispartigo pro limigita konektebleco–pritrakti etajn malkonektojn kaj longajn malkonektojn same.</li>
+<li>Iloj por administri randaj aplikaĵaj vivo-cikloj, inkluzive de:<ul>
+<li>La difino de progresintaj lokadaj limigoj por pritrakti respondotempaj bezonoj de aplikaĵaj elementoj.</li>
+<li>La provizado/envicigo de aplikoj por kontentigi lokadajn postulojn (iniciala lokado).</li>
+<li>Lokado de datumo kaj de laborŝarĝo laŭ internaj/eksteraj okazaĵoj (mobilaj uzado-kazoj, misfunkciadoj, rendimentaj konsideroj, ktp).</li>
+</ul>
+</li>
+<li>Konscio pri la lokada integriĝo: Ne ĉiuj randaj disponigoj postulos la saman aplikaĵon samtempe. Lokada kaj postula konscio estas verŝajna bezono.</li>
+<li>Diskreta aparataro kun limigitaj rimedoj kaj limigita kapablo por ekspansiiĝi en la defora ejo devas esti konsiderataj, kiam desegnanta kaj la ĝeneralan arkitekturon ĉe la macro-nivelo kaj la administraj iloj. La koncepto esti kapabla kapti remotajn rimedojn laŭ peto de aliaj ejoj, aŭ najbaroj super maŝa reto aŭ de kernaj elementoj en hierarkia reto, signifas, ke fluctuoj en loka postulo povas esti renkontitaj sen ineficieco en aparataj disponigoj.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="conclusion-and-call-to-action">
+<h2>KONKLUDO KAJ ALVOKO AL AGO<a class="headerlink" href="#conclusion-and-call-to-action" title="Permalink to this headline">¶</a></h2>
+<p>Edge-komputado ne estas limigita nur al la komponantoj kaj arkitekturoj de OpenStack, sed ekzistas kelkaj kialoj por tio ke OpenStack estas aparte alloga kiel platformo por nubo-komputado. The OSF Edge Computing Group petas la malferma fonta komunumo komenci esplori tiujn defiojn kaj eblecojn. Ni rekonas ke ankoraŭ estas laboro faronta por atingi niajn celojn krei la ilojn por veni al ĉi tiujn novajn postulojn. Ni bonvenigas kaj kuraĝigas la tutan liberan fontan komunumon por kunigi en la ŝanco difini kaj disvolvi nuban komputadon. Vi povas trovi pli da informoj pri la grupaj agadoj en la retejo de OpenStack Edge Computing.</p>
+<p>Vizitu openstack.org por komenci kun OpenStack aŭ alklaku ĉi tiujn rimedojn por pliaj informoj:</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Rimedo</th>
+<th class="head">Superrigado</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>OpenStack Nuba Komputada retejo</td>
+<td>Centra loko por trovi montroj al videoj de antaŭaj eventoj, artikoloj kaj plua enhavo pri randa komputado.</td>
+</tr>
+<tr class="row-odd"><td>OpenStack Nuba Komputado dissendolisto</td>
+<td>Forumo por diskutoj pri rando kaj rando-komputado (ne ekskluzive al OpenStack) kaj por ricevi informojn pri daŭraj agadoj kaj alvokoj por agado.</td>
+</tr>
+<tr class="row-even"><td>OpenStack Pinto (Summit)</td>
+<td>Konferenco de kvar tagoj por komercaj gvidantoj de IT, nubo operacioj kaj progrmistoj kiu kovras la malfermitan infrastrukturon pejzaĝo … Atenti por nubo-rilataj programoj kaj kunsidoj je la sekvontaj Pintoj.</td>
+</tr>
+<tr class="row-odd"><td>Interreta Relajsa Babilo (IRC; <a class="reference external" href="https://wiki.openstack.org/wiki/IRC">https://wiki.openstack.org/wiki/IRC</a>)</td>
+<td>La kunvenoj de Fog/Edge/Massively Distributed Clouds (FEMDC) okazigas ĉiun du semajnojn (nepara semajnojn), 1500 UTC merkrede, en la IRC-kanalo #openstack-meeting.</td>
+</tr>
+<tr class="row-even"><td>OpenStack eventoj (<a class="reference external" href="https://www.openstack.org/community/events/">https://www.openstack.org/community/events/</a>)</td>
+<td>Tutmonda horaro de eventoj inkluzive de la popularaj OpenStack Pintoj kaj regionaj OpenStack Tagoj.</td>
+</tr>
+<tr class="row-odd"><td>OpenStack Foiro (<a class="reference external" href="https://www.openstack.org/marketplace/">https://www.openstack.org/marketplace/</a>)</td>
+<td>Ununura rimedo al la kvalifika tutmonda ekosistemo por distribuoj, peliloj, trejnado, servoj kaj pli</td>
+</tr>
+<tr class="row-even"><td>Tuto de la OpenStack dokumentaro (<a class="reference external" href="https://docs.openstack.org/">https://docs.openstack.org/</a>)</td>
+<td>Indekso al ĉiu dokumentado, por ĉiu rolo kaj paŝo en planado kaj funkciado de OpenStack-nubo.</td>
+</tr>
+<tr class="row-odd"><td>Bonvenon al la komunumo! (<a class="reference external" href="https://www.openstack.org/community/">https://www.openstack.org/community/</a>)</td>
+<td>Aliĝi al dissendolistoj kaj IRC-kanaloj, trovi laborojn kaj eventojn, aliri la fontkodon kaj pli.</td>
+</tr>
+<tr class="row-even"><td>Uzanto grupoj (<a class="reference external" href="https://groups.openstack.org/">https://groups.openstack.org/</a>)</td>
+<td>Trovu grupon de uzantoj proksime al vi, atentu renkontiĝojn kaj hackatons-aŭ organizu unu!</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Nubranda Komputado: Trans la datumejo</a><ul>
+<li><a class="reference internal" href="#introduction">ENKONDUKO</a></li>
+<li><a class="reference internal" href="#what-is-cloud-edge-computing">KIO ESTAS CLOUD EDGE COMPUTING -au NUBRANDA KOMPUTADO ?</a><ul>
+<li><a class="reference internal" href="#a-deeper-exploration-of-edge-computing-considerations">PLI PROFUNDA ESPLORADO de RANDA KOMPUTANTA KONSIDEROJN</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exploring-characteristics">ESPLORI KARAKTERIZAĴON KAJ UZO KAZOJ</a><ul>
+<li><a class="reference internal" href="#use-cases">UZO KAZOJ</a><ul>
+<li><a class="reference internal" href="#data-collection-and-analytics">Datuma Kolekto kaj Analitiko</a></li>
+<li><a class="reference internal" href="#security">Sekureco</a></li>
+<li><a class="reference internal" href="#compliance-requirements">Konformiĝo Postuloj</a></li>
+<li><a class="reference internal" href="#network-function-virtualization-nfv">Reto Funkcio Virtualigo (NFV)</a></li>
+<li><a class="reference internal" href="#real-time">Real-tempo</a></li>
+<li><a class="reference internal" href="#immersive">Ampleksa</a></li>
+<li><a class="reference internal" href="#network-efficiency">Reta Efiko</a></li>
+<li><a class="reference internal" href="#self-contained-and-autonomous-site-operations">Aŭtomataj kaj aŭtonomaj datumejaj operacioj</a></li>
+<li><a class="reference internal" href="#privacy">Privateco</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scenarios">SCENAROJ</a></li>
+<li><a class="reference internal" href="#challenges">PROVOKOJ</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion-and-call-to-action">KONKLUDO KAJ ALVOKO AL AGO</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, OpenStack Foundation.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
