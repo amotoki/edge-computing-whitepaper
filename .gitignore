@@ -1,2 +1,4 @@
 doc/build/
+doc/source/locale/index.pot
+doc/source/locale/*/LC_MESSAGES/index.po
 *.mo
